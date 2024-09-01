@@ -17,28 +17,28 @@ body {
   /* padding: 10px 15px 10px 15px; */
 }
 p {
-  font-size: 22px;
+  font-size: 17px;
   color: rgb(64, 206, 250);
   font-family: Helvetica, Arial, system-ui;
   text-align: left;
+  padding: 5;
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
-  /* height:100vh;
-    width: 100vw; */
 }
 .col1 {
   /* width:280px; */
   width: 20%;
 }
 .col2 {
-  width: 60%;
+  width: 10px;
+  font-size: 10px;
   text-align: center;
 }
 .col3 {
-  width: 20px;
+  width: 60%;
   float: left;
   /* text-align: center;
   font-size: 15px; */
@@ -47,11 +47,11 @@ p {
   display: block;
   position: absolute;
   /* left: 0px; */
-  left: 50px;
+  left: 20%;
   /* width:calc(100%-1px); */
-  width: 90%;
+  width: 75%;
   /* padding: 10px; */
-  top: 720px;
+  top: 0px;
   height: 800px;
   border: 0;
 }
@@ -65,13 +65,13 @@ p {
 }
 #consigne {
   position: absolute;
-  height: 100px;
-  /* background: black; */
+  height: 800px;
+  background: black;
   text-align: center;
   /* top: 230px; */
-  left: 60px;
-  top: 560px;
-  width: 99%;
+  left: 8px;
+  top: 0px;
+  width: 25%;
 }
 #cacheHaut {
   position: absolute;
@@ -108,24 +108,22 @@ p {
 #cacheBas {
   position: absolute;
   height: 65px;
-  top: 1260px;
+  top: 750px;
   float: right;
   width: 99%;
   font-size: 14px;
+  background: black;
   /* color: rgb(206, 26, 206); */
   text-align: center;
   /* padding: 15px; */
 }
-#cacheBasRect {
+#cacheDroit {
   position: absolute;
-  height: 65px;
-  top: 1200px;
-  float: right;
-  width: 100%;
-  font-size: 14px;
-  color: rgb(180, 177, 177);
-  text-align: center;
-  padding: 15px;
+  height: 812px;
+  background: black;
+  left: 95%;
+  top: 0px;
+  width: 5%;
 }
 #popup {
   display: none;

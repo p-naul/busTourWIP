@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"> -->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Bus Tour</title>
+    <script
+      type="text/javascript"
+      src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"
+    ></script>
+    <script type="text/javascript" src="AnimationControls.js"></script>
+    <link rel="stylesheet" href="styles.css" media="screen" title="no title" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div><iframe src="" id="api-frame"></iframe></div>
+    <div id="cacheBas"></div>
+    <div id="cacheDroit"></div>
+    <div id="consigne">
+      <p id="infoText">
+        <br><br><br>Navigation à la souris
+        <br>- Zoom sur un composant : cliquez la bulle
+        <br>- Zoom n'importe ou : double-cliquez
+        <br>- Zoom avant et arrière : molette
+        <br>- Bouger sur le coté : bouton droit
+        <br>
+        <br>Consigne
+        <br>1. Sélectionnez les composants des consoles, ils se déplaceront sur la table d’assemblage
+        <br>2. Lorsque vous considérez que votre assemblage correspond à votre mission, cliquez sur le buzzer doré pour valider
+      </p>
+      <br><br><br><br><br><br><br>
+      <button id="resetButton" class="favorite styled" type="button">
+        Fin
+      </button>
+    </div>
+    <div id="bagniere">
+      <section class="container">
+        <section class="col1"><img src="logo.jpg" style="width: 230px; height: 50px; left: 0px" /></section>
+        <section class="col2"></section>
+        <section class="col3"><div id="timer">00:40:00</div></section>
+      </section>
+    </div>
+    <div id="timerPopup" class="popup">
+      <div class="popup-content">
+        <span id="closePopup" class="close">&times;</span>
+        <p>Vous avez fini en: <span id="popupTimer"></span> Félicitations !</p>
+      </div>
+    </div>
+    
+    <script>
+      function showText(message) {
+        document.getElementById("infoText").innerText = message;
+      }
+    </script>
+    <script type="text/javascript" src="scenario.js"></script>
+    <!-- <script type="text/javascript" src="hover.js"></script> -->
+    <script type="text/javascript" src="commun.js"></script>
+  </body>
+</html>
