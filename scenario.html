@@ -85,26 +85,74 @@
           <span class="material-symbols-outlined"> arrow_back_ios </span> Retour
           aux scénarios
         </a>
-        <button class="icon-button">
+        <button id="openPopup1" class="icon-button">
           <img
             src="./assets/img/ph_navigation-arrow-light.png"
             alt="Plane Icon"
           />
         </button>
-        <button class="icon-button">
+        <button id="openPopup2" class="icon-button">
           <img src="./assets/img/clarity_help-line.png" alt="Help Icon" />
         </button>
+      </div>
+    </div>
+    <div id="popup1" class="popup">
+      <div class="popup-content">
+        <span id="closePopup1" class="close">&times;</span>
+        <h2>Comment naviguer dans la 3D</h2>
+        <ul>
+          <li>
+            1 clic gauche sur la pastille transparente : zoom sur un composant
+          </li>
+          <li>
+            1 clic sur un composant pour l'ajouter sur la table d'assemblage ou
+            le retirer
+          </li>
+          <li>Double-clic sur une zone de la scène : zoom sur cette zone</li>
+          <li>Molette avant/arrière : zoom avant/arrière</li>
+          <li>1 clic droit + mouvement souris : se déplacer dans la scène</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="popup2" class="popup">
+      <div class="popup-content">
+        <span id="closePopup2" class="close">&times;</span>
+        <h2>Comment réussir la mission</h2>
+        <ul>
+          <li>
+            Sélectionnez les composants des consoles en cliquant dessus, ils se
+            déplaceront sur la table d'assemblage
+          </li>
+          <li>
+            Lorsque vous considérez que votre assemblage correspond à votre
+            mission, cliquez sur le buzzer doré pour valider
+          </li>
+          <li>
+            À tout moment, vous pouvez sortir de la mission et retourner à
+            l’écran d’accueil en sélectionnant le bouton "Retour aux scénarios"
+          </li>
+        </ul>
       </div>
     </div>
 
     <main>
       <div id="scenario-content" class="info-panel"></div>
       <div class="content-placeholder">
+        <div class="banner">
+          <span
+            >Bien essayé ! Malheureusement la configuration n'est pas tout à
+            fait correcte</span
+          >
+          <div class="timer">00:04:26</div>
+        </div>
         <div><iframe src="" id="api-frame"></iframe></div>
-        <!-- Espace réservé pour votre contenu -->
       </div>
     </main>
+    <button onclick="showBanner(true)">Correct</button>
+    <button onclick="showBanner(false)">Incorrect</button>
     <script type="text/javascript" src="./scripts/scenario.js"></script>
     <script type="text/javascript" src="./scripts/commun.js"></script>
+    <script type="text/javascript" src="./scripts/utils.js"></script>
   </body>
 </html>

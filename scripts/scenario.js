@@ -5,6 +5,7 @@ let api;
 const uid = "3c97912b6c0d4193a963f253ade24749";
 // client.init(uid, { autostart: 1, autospin: 0, success: success, error: error });
 
+var sontEgaux = false;
 var assyBoitier = 0;
 var lastIDboitier = 0;
 var IDavant = 0;
@@ -24,24 +25,49 @@ const ObjetsGroup = [ //ID selectionnable, ID ref, XYZ ref, famille
   [249, 247,-.1130, 0, -.7295 ],
   [257, 247,-.1130, 0, -.7295 ],
   [265, 247,-.1130, 0, -.7295 ],
-  // face avant
+  // faces avant
   [5, 3,-.8675, 0, -.308 ],
   [287, 285,-.6924, 0, -.3063 ],
   [625, 623,-.539, 0, -.3225 ]
 ];
+const ObjetsScenario = [ 
+  //scénario 1
+  [1, 3 ],   //face avant
+  [1, 135 ], //boitier
+  
+  //scénario 2
+  [2, 285 ], //face avant
+  [2, 247 ], //boitier
+  
+  //scénario 3
+  [3, 623 ], //face avant
+  [3, 397]   //boitier
+];
+var tableAssy = [];
+var total = 0;
+var totalConsigne = 0;
+var consigne = [];
+
+
 //---------------------------------------------
 const scenario = getScenario();
 console.log("Scenario sélectionné :", scenario);
-if (scenario == "1") {
-  console.log("Scenario 1")
-} else if (scenario == "2") {
-  console.log("Scenario 2")
-} else if (scenario == "3") {
-  console.log("Scenario 3")
-} else {
-  console.log("Pas de scenario")
+for (let i = 0; i < ObjetsScenario.length; i++) {
+  if (scenario == ObjetsScenario[i][0]) {
+    totalConsigne = consigne.push(ObjetsScenario[i][1]); 
+  };
 };
+window.console.log("consigne :", consigne)
+// if (scenario == "1") {
+//   console.log("Scenario 1")
 
+// } else if (scenario == "2") {
+//   console.log("Scenario 2")
+// } else if (scenario == "3") {
+//   console.log("Scenario 3")
+// } else {
+//   console.log("Pas de scenario")
+// };
 function getScenario() {
   const params = new URLSearchParams(window.location.search);
   return params.get("scenario");
@@ -81,12 +107,16 @@ const success = (apiClient) => {
               for (let i = 0; i < ObjetsGroup.length; i++) {
                 if (info.instanceID == ObjetsGroup[i][0]) {
                   api.translate(ObjetsGroup[i][1], [ObjetsGroup[i][2], ObjetsGroup[i][3], ObjetsGroup[i][4]], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
+                  tableAssy = tableAssy.filter((element) => element !== ObjetsGroup[i][1]);
+                  window.console.log("objets sur la table :", tableAssy)
                 };
               };
             } else { // l'objet n'est pas sur la table
               for (let i = 0; i < ObjetsGroup.length; i++) {
                 if (info.instanceID == ObjetsGroup[i][0]) {
                   api.translate(ObjetsGroup[i][1], [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
+                  total = tableAssy.push(ObjetsGroup[i][1]);
+                  window.console.log("objets sur la table :", tableAssy)
                 };
               };
             };
@@ -101,6 +131,14 @@ const success = (apiClient) => {
             // };
             //---------------------------------------------
           };
+          //---------------------------------------------
+          if (info.instanceID == 815) { //clic sur le buzzer => vérification de la correspondance entre les objets sur table et la consigne
+            window.console.log("objets sur la table :", tableAssy)
+            sontEgaux = consigne.length === tableAssy.length && consigne.every((valeur, index) => valeur === tableAssy[index]);
+            if (sontEgaux == true) {showBanner(true)
+            } else {showBanner(false)}
+          }
+          //---------------------------------------------
         }
       }); 
     });
