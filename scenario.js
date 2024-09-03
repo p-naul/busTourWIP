@@ -82,16 +82,17 @@ const success = (apiClient) => {
         window.console.log('clicked node', info.instanceID);
         // window.console.log(info);
         if (info.instanceID) {  // le clic se fait effectivement sur un objet 
-          if (info.instanceID != 829) { //clic d'autre chose que la scène        
+          if (info.instanceID != 829) { //clic d'autre chose que la scène   
+            api.setCameraLookAt([0, -1, 1], [0, -.2, .3], 4.3, function(err) {});
             if (info.position3D[1] < 0 ) { // l'objet est sur la table (position Y < 0) alors retour à sa position initiale
-              api.setCameraLookAt([0, -1.2, 1.2], [0, -.2, .3], 4.3, function(err) {});
+              // api.setCameraLookAt([0, -1.2, 1.2], [0, -.2, .3], 4.3, function(err) {});
               for (let i = 0; i < ObjetsGroup.length; i++) {
                 if (info.instanceID == ObjetsGroup[i][0]) {
                   api.translate(ObjetsGroup[i][1], [ObjetsGroup[i][2], ObjetsGroup[i][3], ObjetsGroup[i][4]], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
                 };
               };
             } else { // l'objet n'est pas sur la table
-              api.setCameraLookAt([0, -.6, .6], [0, -.2, .3], 4.3, function(err) {});
+              // api.setCameraLookAt([0, -.6, .6], [0, -.2, .3], 4.3, function(err) {});
               // api.translate(info.instanceID-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
               for (let i = 0; i < ObjetsGroup.length; i++) {
                 if (info.instanceID == ObjetsGroup[i][0]) {
