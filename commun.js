@@ -256,7 +256,7 @@ camera: 1, // Usage: Setting to 0 will skip the initial animation that occurs wh
 ui_stop: 0, // Usage: Setting to 0 will hide the "Disable Viewer" button in the top right so that users cannot stop the 3D render once it is started.
 transparent: 0, // Usage: Setting to 1 will make the model's background transparent
 ui_animations: 1, // Usage: Setting to 0 will hide the animation menu and timeline.
-ui_annotations: 1, // Usage: Setting to 0 will hide the Annotation menu.
+ui_annotations: 0, // Usage: Setting to 0 will hide the Annotation menu.
 ui_controls: 1, // Usage: Setting to 0 will hide all the viewer controls at the bottom of the viewer (Help, Settings, Inspector, VR, Fullscreen, Annotations, and Animations).
 ui_fullscreen: 0, // Usage: Setting to 0 will hide the Fullscreen button.
 ui_general_controls: 1, // Usage: Setting to 0 will hide main control buttons in the bottom right of the viewer (Help, Settings, Inspector, VR, Fullscreen).
