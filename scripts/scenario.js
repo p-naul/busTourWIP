@@ -3,7 +3,7 @@ const iframe = document.getElementById("api-frame");
 var client = new window.Sketchfab(version, iframe);
 let api;
 const uid = "3c97912b6c0d4193a963f253ade24749";
-// const uid = "6128fc4ba3314074942665698727eb2f";
+// client.init(uid, { autostart: 1, autospin: 0, success: success, error: error });
 
 var assyBoitier = 0;
 var lastIDboitier = 0;
@@ -29,31 +29,24 @@ const ObjetsGroup = [ //ID selectionnable, ID ref, XYZ ref, famille
   [287, 285,-.6924, 0, -.3063 ],
   [625, 623,-.539, 0, -.3225 ]
 ];
-
 //---------------------------------------------
-var hours = 0;
-var minutes = 0;
-var seconds = 0;
-// var number = 0;
-function addLeadingZero(number) {
-    if (number < 10) {
-      return "0" + number;
-    } else {
-      return number;
-    }
+const scenario = getScenario();
+console.log("Scenario sélectionné :", scenario);
+if (scenario == "1") {
+  console.log("Scenario 1")
+} else if (scenario == "2") {
+  console.log("Scenario 2")
+} else if (scenario == "3") {
+  console.log("Scenario 3")
+} else {
+  console.log("Pas de scenario")
+};
+
+function getScenario() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("scenario");
 }
-setInterval(function() {  // Mise à jour du timer toutes les secondes
-    seconds++;
-    if (seconds == 60) {
-      minutes++;
-      seconds = 0;
-    }
-    if (minutes == 60) {
-      hours++;
-      minutes = 0;
-    }
-    document.getElementById('timer').textContent = addLeadingZero(hours) + ":" + addLeadingZero(minutes) + ":" + addLeadingZero(seconds);
-}, 1000);
+
 
 //---------------------------------------------
 const error = () => window.console.error("Sketchfab API error");
@@ -85,15 +78,12 @@ const success = (apiClient) => {
           if (info.instanceID != 829) { //clic d'autre chose que la scène   
             api.setCameraLookAt([0, -1, 1], [0, -.2, .3], 4.3, function(err) {});
             if (info.position3D[1] < 0 ) { // l'objet est sur la table (position Y < 0) alors retour à sa position initiale
-              // api.setCameraLookAt([0, -1.2, 1.2], [0, -.2, .3], 4.3, function(err) {});
               for (let i = 0; i < ObjetsGroup.length; i++) {
                 if (info.instanceID == ObjetsGroup[i][0]) {
                   api.translate(ObjetsGroup[i][1], [ObjetsGroup[i][2], ObjetsGroup[i][3], ObjetsGroup[i][4]], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
                 };
               };
             } else { // l'objet n'est pas sur la table
-              // api.setCameraLookAt([0, -.6, .6], [0, -.2, .3], 4.3, function(err) {});
-              // api.translate(info.instanceID-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
               for (let i = 0; i < ObjetsGroup.length; i++) {
                 if (info.instanceID == ObjetsGroup[i][0]) {
                   api.translate(ObjetsGroup[i][1], [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});

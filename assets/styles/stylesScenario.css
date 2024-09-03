@@ -1,0 +1,202 @@
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("./assets/fonts/HelveticaNowDisplay.woff2") format("woff2"),
+    url("./assets/fonts/HelveticaNowDisplay.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Now Display", Arial, sans-serif;
+  background-color: #000;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #000;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.mission-bar {
+  background-color: #007eb5;
+  height: 75px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.mission-title {
+  font-size: 16px;
+  color: white;
+}
+
+.right-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.return-button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.icon-button {
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+}
+
+.icon-button img {
+  width: 40px;
+  height: 40px;
+}
+
+.timer {
+  font-size: 16px;
+  color: white;
+}
+
+.language {
+  display: none;
+  align-items: center;
+  font-size: 16px;
+}
+
+.language img {
+  height: 20px;
+  margin-right: 8px;
+}
+
+main {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.info-panel {
+  padding: 20px;
+  background-color: #f0f0f0;
+  color: black;
+  border-radius: 10px;
+  width: 400px;
+  height: 800px;
+}
+
+.info-panel ul {
+  list-style-type: none; /* Supprimer les puces par défaut */
+  padding: 0;
+  margin: 0;
+  font-family: "Helvetica Now Display", Arial, sans-serif;
+  font-size: 16px; /* Ajuster la taille de la police */
+  color: #333; /* Couleur du texte */
+  line-height: 1.6; /* Espacement entre les lignes */
+}
+
+ul > li {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start; /* Pour aligner le texte avec l'icône */
+}
+
+ul > li::before {
+  content: "•"; /* Ajouter la puce personnalisée */
+  color: #007eb5; /* Couleur de la puce */
+  font-size: 20px; /* Taille de la puce */
+  margin-right: 10px; /* Espacement entre la puce et le texte */
+  line-height: 1; /* Ajuster la hauteur de ligne de la puce */
+}
+
+ul ul {
+  margin-left: 30px; /* Indentation pour les sous-listes */
+}
+
+ul ul > li {
+  display: flex;
+  align-items: flex-start; /* Aligner l'icône chevron avec le texte */
+  position: relative;
+  margin-bottom: 10px; /* Ajout d'un espacement entre les éléments de la sous-liste */
+}
+
+ul ul > li::before {
+  content: "›"; /* Chevron pour les sous-points */
+  color: #333; /* Couleur du chevron */
+  font-size: 20px; /* Taille du chevron */
+  margin-right: 10px; /* Espacement entre le chevron et le texte */
+  line-height: 1; /* Ajuster la hauteur de ligne de la puce */
+  margin-top: 3px; /* Ajuster la position verticale du chevron */
+}
+
+ul ul > li > span.highlight {
+  margin-left: 5px; /* Légèrement éloigné du texte pour réduire l'espace */
+}
+
+.highlight {
+  color: #007eb5; /* Couleur pour le texte mis en évidence */
+  font-weight: bold; /* Texte en gras pour la mise en évidence */
+  text-decoration: none; /* Enlever le soulignement si c'est un lien */
+}
+
+ul ul li span.material-symbols-outlined {
+  margin-right: 5px; /* Réduire l'espacement entre le chevron et le texte */
+}
+
+.content-placeholder {
+  flex: 2;
+  background-color: #333;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-placeholder img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+}
+
+.content-placeholder div {
+  width: 100%;
+}
+
+#api-frame {
+  display: block;
+  /* left: 0px; */
+  left: 20%;
+  /* width:calc(100%-1px); */
+  width: 100%;
+  /* padding: 10px; */
+  top: 0px;
+  height: 800px;
+  border: 0;
+}

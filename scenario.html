@@ -1,76 +1,110 @@
 <!DOCTYPE html>
-<!-- <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"> -->
-<html>
+<html lang="fr">
   <head>
-    <meta charset="utf-8" />
-    <title>Bus Tour</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nicomatic Mission</title>
+    <link rel="stylesheet" href="./assets/styles/stylesScenario.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
     <script
       type="text/javascript"
       src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"
     ></script>
     <script type="text/javascript" src="AnimationControls.js"></script>
-    <link rel="stylesheet" href="styles.css" media="screen" title="no title" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    <script>
+      function displayScenarioText() {
+        const params = new URLSearchParams(window.location.search);
+        const scenario = params.get("scenario");
+
+        let content = "";
+        if (scenario === "1") {
+          content = `
+              <ul>
+                <li>Boîtier Cockpit panel au format 2U</li>
+                <ul>
+                  <li>
+                    1 fonction avec un sélecteur rotatif pour régler la vitesse de
+                    ventilation <span class="highlight">cabine</span> - 5 vitesses + position OFF
+                  </li>
+                  <li>
+                    1 fonction avec un sélecteur rotatif pour régler la vitesse de
+                    ventilation <span class="highlight">cockpit</span> - 5 vitesses + position OFF
+                  </li>
+                  <li>
+                    1 fonction avec un sélecteur rotatif pour sélectionner la source
+                    de l’air conditionné - 5 vitesses + position OFF
+                  </li>
+                  <li>
+                    1 bouton poussoir bistable pour ouvrir ou fermer les clapets avec
+                    retour lumineux intégré
+                  </li>
+                </ul>
+                <li>Cartes électroniques internes au boîtier gérant les fonctions</li>
+                <li>Harnais à base de connecteurs XX points pour relier la face avant à
+                  l’électronique interne</li>
+                <li>Connecteur d’interface client de XX broches ML38999</li>
+              </ul>`;
+        } else if (scenario === "2") {
+          content = "<p>Texte spécifique pour le Scénario 2.</p>";
+        } else if (scenario === "3") {
+          content = "<p>Texte spécifique pour le Scénario 3.</p>";
+        } else {
+          content = "<p>Aucun scénario sélectionné.</p>";
+        }
+
+        document.getElementById("scenario-content").innerHTML = content;
+      }
+
+      window.onload = displayScenarioText;
+    </script>
   </head>
   <body>
-    <div><iframe src="" id="api-frame"></iframe></div>
-    <!-- <div id="cacheBas"></div> -->
-    <!-- <div id="cacheDroit"></div> -->
-    <div id="consigne">
-      <p id="infoText">
-        <p><br><br><br>Scénario 1. Réaliser un module "Air Conditionné" avec
-          <br>a. Un boitier Cockpit, panel au format 2U contenant : 
-          <br>- Une fonction avec sélecteur rotatif pour régler la vitesse de ventillation cabine, 5 vitesses et position OFF
-          <br>- Une fonction avec sélecteur rotatif pour régler la vitesse de ventillation cockpit, 5 vitesses et position OFF
-          <br>- Une fonction avec sélecteur rotatif pour sélectionner la source de l'air conditionné, 5 vitesses et position OFF
-          <br>- Un bouton poussoir bistrable pour ouvrir ou fermer les clapets avec retour lumineux intégré
-          <br>b. Les cartes électroniques internes au boitier gérant les fonctions
-          <br>c. Les harnais à base de connecteurs XX points pour relier la face avant à l'électronique internet
-          <br>d. Un connecteur d'interface client de XX broches ML38999
-          </p>
-        <br><br><br>Navigation à la souris
-        <br>- Zoom sur un composant : cliquez la bulle
-        <br>- Zoom n'importe ou : double-cliquez
-        <br>- Zoom avant et arrière : molette
-        <br>- Bouger sur le coté : bouton droit
-        <br>
-        <br>Consigne
-        <br>1. Sélectionnez les composants des consoles, ils se déplaceront sur la table d’assemblage
-        <br>2. Lorsque vous considérez que votre assemblage correspond à votre mission, cliquez sur le buzzer doré pour valider
-      </p>
-      <br><br><br><br><br><br><br>
-      <button id="resetButton" class="favorite styled" type="button">
-        Fin
-      </button>
-    </div>
-    <div id="bagniere">
-      <section class="container">
-        <section class="col1">
-          <img src="iconeNavB.png" style="width: 40px; height: 40px" />
-          <img src="iconeQuestionB.png" style="width: 40px; height: 40px" />
-        </section>
-        <section class="col2"></section>
-        <section class="col3"><div id="timer" style="color:white" >00:40:00</div></section>
-      </section>
-    </div>
-    <div id="timerPopup" class="popup">
-      <div class="popup-content">
-        <span id="closePopup" class="close">&times;</span>
-        <p>Vous avez fini en: <span id="popupTimer"></span> Félicitations !</p>
+    <header>
+      <div class="logo">
+        <img
+          src="./assets/img/NicomaticGroup_Logo_Horizontal_White 1.png"
+          alt="Nicomatic Group"
+        />
+      </div>
+      <div class="language">
+        <img src="./assets/img/FrenchFlag.jpg" alt="Français" />
+        <span>Français</span>
+      </div>
+    </header>
+
+    <div class="mission-bar">
+      <div class="mission-title">
+        <span>VOTRE MISSION</span> | Réaliser le pilotage d’un équipement
+        embarqué pour gérer l’air conditionné
+      </div>
+      <div class="right-icons">
+        <a href="index.html" class="return-button">
+          <span class="material-symbols-outlined"> arrow_back_ios </span> Retour
+          aux scénarios
+        </a>
+        <button class="icon-button">
+          <img
+            src="./assets/img/ph_navigation-arrow-light.png"
+            alt="Plane Icon"
+          />
+        </button>
+        <button class="icon-button">
+          <img src="./assets/img/clarity_help-line.png" alt="Help Icon" />
+        </button>
       </div>
     </div>
-    
-    <script>
-      function showText(message) {
-        document.getElementById("infoText").innerText = message;
-      }
-    </script>
-    <script type="text/javascript" src="scenario.js"></script>
-    <!-- <script type="text/javascript" src="hover.js"></script> -->
-    <script type="text/javascript" src="commun.js"></script>
+
+    <main>
+      <div id="scenario-content" class="info-panel"></div>
+      <div class="content-placeholder">
+        <div><iframe src="" id="api-frame"></iframe></div>
+        <!-- Espace réservé pour votre contenu -->
+      </div>
+    </main>
+    <script type="text/javascript" src="./scripts/scenario.js"></script>
+    <script type="text/javascript" src="./scripts/commun.js"></script>
   </body>
 </html>
