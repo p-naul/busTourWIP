@@ -12,28 +12,28 @@ var IDavant = 0;
 var XYZavant = [0, 0, 0];
 const ObjetsGroup = [ //ID selectionnable, ID ref, XYZ ref, famille
   //boitier 1
-  [399, 397, -.4806, 0, -.7379 ],
-  [407, 397, -.4806, 0, -.7379 ],
-  [415, 397, -.4806, 0, -.7379 ],
-  [423, 397, -.4806, 0, -.7379 ],
+  [50, 30, -.4806, 0, -.7379 ],
+  [270, 30, -.4806, 0, -.7379 ],
+  [160, 30, -.4806, 0, -.7379 ],
   //boitier 2
   [137, 135,-.3017, 0, -.7228 ],
   [145, 135,-.3017, 0, -.7228 ],
   [157, 135,-.3017, 0, -.7228 ],
   [168, 135,-.3017, 0, -.7228 ],
   //boitier 3
-  [249, 247,-.1130, 0, -.7295 ],
-  [257, 247,-.1130, 0, -.7295 ],
-  [265, 247,-.1130, 0, -.7295 ],
+  [5, 3, -.1130, 0, -.7295 ],
+  [27, 3,-.1130, 0, -.7295 ],
+  [16, 3,-.1130, 0, -.7295 ],
   // faces avant
-  [5, 3,-.8675, 0, -.308 ],
-  [287, 285,-.6924, 0, -.3063 ],
-  [625, 623,-.539, 0, -.3225 ]
+  [5300, 5100,-.8675, 0, -.308 ],
+  [53, 51,-.6924, 0, -.3063 ],
+  [1600, 300, -.539, 0, -.3225 ]
 ];
 const ObjetsScenario = [ 
   //scénario 1
-  [1, 3 ],   //face avant
-  [1, 135 ], //boitier
+  [1, 51 ],   //face avant
+  [1, 3 ], //boitier
+  [1, 184 ], //harnais sur table (212 sur console)
   
   //scénario 2
   [2, 285 ], //face avant
@@ -101,9 +101,14 @@ const success = (apiClient) => {
         window.console.log('clicked node', info.instanceID);
         // window.console.log(info);
         if (info.instanceID) {  // le clic se fait effectivement sur un objet 
-          if (info.instanceID != 829) { //clic d'autre chose que la scène   
+          if (info.instanceID != 927) { //clic d'autre chose que la scène   
             api.setCameraLookAt([0, -1, 1], [0, -.2, .3], 4.3, function(err) {});
             if (info.position3D[1] < 0 ) { // l'objet est sur la table (position Y < 0) alors retour à sa position initiale
+              if (info.instanceID == 186 ) {
+                api.hide (186, function(err) {}); //186
+                api.hide (178, function(err) {});
+                api.show (212, function(err) {}); //212
+              };
               for (let i = 0; i < ObjetsGroup.length; i++) {
                 if (info.instanceID == ObjetsGroup[i][0]) {
                   api.translate(ObjetsGroup[i][1], [ObjetsGroup[i][2], ObjetsGroup[i][3], ObjetsGroup[i][4]], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
@@ -112,6 +117,11 @@ const success = (apiClient) => {
                 };
               };
             } else { // l'objet n'est pas sur la table
+              if (info.instanceID == 212 ) {
+                api.hide (212, function(err) {}); //212
+                api.hide (204, function(err) {}); 
+                api.show (186, function(err) {}); //186
+              };
               for (let i = 0; i < ObjetsGroup.length; i++) {
                 if (info.instanceID == ObjetsGroup[i][0]) {
                   api.translate(ObjetsGroup[i][1], [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
@@ -134,7 +144,8 @@ const success = (apiClient) => {
           //---------------------------------------------
           if (info.instanceID == 815) { //clic sur le buzzer => vérification de la correspondance entre les objets sur table et la consigne
             window.console.log("objets sur la table :", tableAssy)
-            sontEgaux = consigne.length === tableAssy.length && consigne.every((valeur, index) => valeur === tableAssy[index]);
+            sontEgaux = consigne.length ===
+             tableAssy.length && consigne.every((valeur, index) => valeur === tableAssy[index]);
             if (sontEgaux == true) {showBanner(true)
             } else {showBanner(false)}
           }
