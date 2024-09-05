@@ -1,6 +1,8 @@
-const version = "1.12.1";
+// const version = "1.12.1";
 const iframe = document.getElementById("api-frame");
-var client = new window.Sketchfab(version, iframe);
+// var client = new window.Sketchfab(version, iframe);
+var client = new Sketchfab( iframe );
+// var client = new Sketchfab("1.12.1", iframe);
 let api;
 const uid = "3c97912b6c0d4193a963f253ade24749";
 // client.init(uid, { autostart: 1, autospin: 0, success: success, error: error });
@@ -48,7 +50,15 @@ var total = 0;
 var totalConsigne = 0;
 var consigne = [];
 
-
+//---------------------------------------------
+function openPopup() { // Fonction pour ouvrir le popup
+  var popup = document.getElementById("popup3");
+  popup.style.display = "block";
+}
+function closePopup() {  // Fonction pour fermer le popup
+  var popup = document.getElementById("popup3");
+  popup.style.display = "none";
+}
 //---------------------------------------------
 const scenario = getScenario();
 console.log("Scenario sélectionné :", scenario);
@@ -83,6 +93,8 @@ const success = (apiClient) => {
         api.getNodeMap(function(err, nodes) {
           if (!err) {window.console.log(nodes); }
         });
+        api.hide (381, function(err) {}); //381
+        api.hide (373, function(err) {}); //381
       //---------------------------------------------
       // affiche les annotations sous forme de bulles semi transparentes
       url = getNewPastilleURL('rgba(200,200,200,.2)', 'rgba(200,200,200,.4)', 'none', 'none', 0, 50, 512, 256); // Couleurs: intérieur, cercle, texte, texte
@@ -96,6 +108,15 @@ const success = (apiClient) => {
               });
           }
       });
+      // affiche du contenu d'annotation en hover par une fenêtre popup
+      // api.addEventListener('annotationMouseEnter', function(index) {
+      //   window.console.log('Hovering on annotation', index);
+        // setTimeout(openPopup, 100); //ouvrir le popup après 2 milisecondes
+        // document.getElementById("openPopup3").addEventListener("click", function () {
+        //   document.getElementById("popup3").style.display = "flex";
+        // });
+      // });
+
       //---------------------------------------------
       api.addEventListener('click',function(info) { 
         window.console.log('clicked node', info.instanceID);
@@ -142,7 +163,7 @@ const success = (apiClient) => {
             //---------------------------------------------
           };
           //---------------------------------------------
-          if (info.instanceID == 815) { //clic sur le buzzer => vérification de la correspondance entre les objets sur table et la consigne
+          if (info.instanceID == 913) { //clic sur le buzzer => vérification de la correspondance entre les objets sur table et la consigne
             window.console.log("objets sur la table :", tableAssy)
             sontEgaux = consigne.length ===
              tableAssy.length && consigne.every((valeur, index) => valeur === tableAssy[index]);
@@ -152,6 +173,14 @@ const success = (apiClient) => {
           //---------------------------------------------
         }
       }); 
+
+    //   api.showAnnotationTooltips(function(err) {
+    //     if (!err) {
+    //         window.console.log('Showing annotation tooltip');
+    //     }
+    // });
+
+
     });
   });
 };
