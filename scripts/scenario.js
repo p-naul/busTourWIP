@@ -122,7 +122,7 @@ const success = (apiClient) => {
         window.console.log('clicked node', info.instanceID);
         // window.console.log(info);
         if (info.instanceID) {  // le clic se fait effectivement sur un objet 
-          if (info.instanceID != 967) { //clic d'autre chose que la scène   
+          if (info.instanceID != 1065) { //clic d'autre chose que la scène   
             api.setCameraLookAt([0, -1, 1], [0, -.2, .3], 4.3, function(err) {});
             if (info.position3D[1] < 0 ) { // l'objet est sur la table (position Y < 0) alors retour à sa position initiale
               if (info.instanceID == 186 ) {
