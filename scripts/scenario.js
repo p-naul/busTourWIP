@@ -93,8 +93,8 @@ const success = (apiClient) => {
         api.getNodeMap(function(err, nodes) {
           if (!err) {window.console.log(nodes); }
         });
-        api.hide (381, function(err) {}); //381
-        api.hide (373, function(err) {}); //381
+        api.hide (623, function(err) {}); //harnais 1Uv1
+        api.hide (615, function(err) {}); 
       //---------------------------------------------
       // affiche les annotations sous forme de bulles semi transparentes
       url = getNewPastilleURL('rgba(200,200,200,.2)', 'rgba(200,200,200,.4)', 'none', 'none', 0, 50, 512, 256); // Couleurs: intérieur, cercle, texte, texte
@@ -125,10 +125,10 @@ const success = (apiClient) => {
           if (info.instanceID != 1161) { //clic d'autre chose que la scène   
             api.setCameraLookAt([0, -1, 1], [0, -.2, .3], 4.3, function(err) {});
             if (info.position3D[1] < 0 ) { // l'objet est sur la table (position Y < 0) alors retour à sa position initiale
-              if (info.instanceID == 186 ) {
-                api.hide (186, function(err) {}); //186
-                api.hide (178, function(err) {});
-                api.show (212, function(err) {}); //212
+              if (info.instanceID == 623 ) {
+                api.hide (621, function(err) {}); 
+                api.hide (613, function(err) {});
+                api.show (212, function(err) {}); 
               };
               for (let i = 0; i < ObjetsGroup.length; i++) {
                 if (info.instanceID == ObjetsGroup[i][0]) {
