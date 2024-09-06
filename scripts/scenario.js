@@ -18,10 +18,10 @@ const ObjetsGroup = [ //ID selectionnable, ID ref, XYZ ref, famille
   [270, 30, -.4806, 0, -.7379 ],
   [160, 30, -.4806, 0, -.7379 ],
   //boitier 2
-  [137, 135,-.3017, 0, -.7228 ],
-  [145, 135,-.3017, 0, -.7228 ],
-  [157, 135,-.3017, 0, -.7228 ],
-  [168, 135,-.3017, 0, -.7228 ],
+  [203, 180,-.3017, 0, -.7228 ],
+  [202, 180,-.3017, 0, -.7228 ],
+  [182, 180,-.3017, 0, -.7228 ],
+  [190, 180,-.3017, 0, -.7228 ],
   //boitier 3
   [500, 300, -.1130, 0, -.7295 ],
   [27, 3,-.1130, 0, -.7295 ],
@@ -122,7 +122,7 @@ const success = (apiClient) => {
         window.console.log('clicked node', info.instanceID);
         // window.console.log(info);
         if (info.instanceID) {  // le clic se fait effectivement sur un objet 
-          if (info.instanceID != 1065) { //clic d'autre chose que la scène   
+          if (info.instanceID != 1161) { //clic d'autre chose que la scène   
             api.setCameraLookAt([0, -1, 1], [0, -.2, .3], 4.3, function(err) {});
             if (info.position3D[1] < 0 ) { // l'objet est sur la table (position Y < 0) alors retour à sa position initiale
               if (info.instanceID == 186 ) {
