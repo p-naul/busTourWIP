@@ -21,36 +21,38 @@
 
         let content = "";
         if (scenario === "1") {
-          content = `
+          // équipement embarqué pour gérer l’air conditionné
+          content = ` 
+            <ul>
+              <li>1 boîtier cockpit panel au format 2U permettant les fonctions suivantes :</li>
               <ul>
-                <li>Boîtier Cockpit panel au format 2U</li>
-                <ul>
-                  <li>
-                    1 fonction avec un sélecteur rotatif pour régler la vitesse de
-                    ventilation <span class="highlight">cabine</span> - 5 vitesses + position OFF
-                  </li>
-                  <li>
-                    1 fonction avec un sélecteur rotatif pour régler la vitesse de
-                    ventilation <span class="highlight">cockpit</span> - 5 vitesses + position OFF
-                  </li>
-                  <li>
-                    1 fonction avec un sélecteur rotatif pour sélectionner la source
-                    de l’air conditionné - 5 vitesses + position OFF
-                  </li>
-                  <li>
-                    1 bouton poussoir bistable pour ouvrir ou fermer les clapets avec
-                    retour lumineux intégré
-                  </li>
-                </ul>
-                <li>Cartes électroniques internes au boîtier gérant les fonctions</li>
-                <li>Harnais à base de connecteurs XX points pour relier la face avant à
-                  l’électronique interne</li>
-                <li>Connecteur d’interface client de XX broches ML38999</li>
-              </ul>`;
+                <li>Réglage de la vitesse de ventilation <span class="highlight">cabine</span> avec un sélecteur rotatif 5 vitesses et position OFF</li>
+                <li>Réglage de la vitesse de ventilation cockpit avec un sélecteur rotatif 5 vitesses et position OFF </li>
+                <li>Sélection de la source de l’air conditionné avec un sélecteur rotatif 5 positions et position OFF</li>
+                <li>Gestion des clapets en ouverture et fermeture avec un bouton poussoir bistable et retour lumineux intégré au bouton pour visualiser le mode sélectionné</li>
+              </ul>
+              <li>2 cartes électroniques interne au boitier gérant les fonctions</li>
+              <li>1 harnais pour relier la face avant et l’électronique, à base de connecteurs XX points</li>
+              <li>1 connecteur d’interface client de XX broches MIL38999</li>
+            </ul>`;
         } else if (scenario === "2") {
-          content = "<p>Texte spécifique pour le Scénario 2.</p>";
+          content = `
+            <ul>
+              <li>Boiter cockpit panel au format 1U devant gérer l’allumage, le standby ou l’extinction d'une balise</li>
+              <li>Boiter cockpit panel au format 1U devant réaliser le pilotage d’un équipement embarqué pour gérer l’allumage, le standby ou l’extinction par un interrupteur. Un voyant témoin de couleur blanc doit renvoyer l’information lorsque l’équipement piloté est en marche</li>
+              <li>Des cartes électroniques interne au boitier gérant les fonctions</li>
+              <li>La connectique interne au boitier de commande afin de relier la Face avant à l’électronique interne est composée d’un harnais à base de connecteurs XX points</li>
+              <li>Le connecteur d’interface client est un connecteur de XX broches MIL38999</li>
+            </ul>`;
         } else if (scenario === "3") {
-          content = "<p>Texte spécifique pour le Scénario 3.</p>";
+          content = `
+            <ul>
+              <li>Boiter cockpit panel au format 1U devant gérer l’allumage ou l’extinction d’un équipement embarqué</li>
+              <li>Boiter cockpit panel au format 1U devant réaliser le pilotage d’un équipement embarqué pour gérer l’allumage ou l’extinction par un interrupteur et une fonction bouton poussoir pour sélectionner un mode Auto/Standby avec un voyant témoin de couleurs jaune intégré au bouton devant renvoyer l’information lorsque l’équipement piloté est en Standby</li>
+              <li>Des cartes électroniques interne au boitier gérant les fonctions</li>
+              <li>La connectique interne au boitier de commande afin de relier la Face avant à l’électronique interne est composée d’un harnais à base de connecteurs XX points</li>
+              <li>Le connecteur d’interface client est un connecteur de XX broches MIL38999</li>
+            </ul>`;
         } else {
           content = "<p>Aucun scénario sélectionné.</p>";
         }
@@ -77,8 +79,8 @@
 
     <div class="mission-bar">
       <div class="mission-title">
-        <span>VOTRE MISSION</span> | Réaliser le pilotage d’un équipement
-        embarqué pour gérer l’air conditionné
+        <span>VOTRE MISSION</span> | Réaliser le pilotage d’un équipement embarqué avec les fonctions décrites ci-dessous
+        <br>Les boutons d'aide à droite vous aideront à accomplir votre mission
       </div>
       <div class="right-icons">
         <a href="index.html" class="return-button">
@@ -96,6 +98,7 @@
         </button>
       </div>
     </div>
+
     <div id="popup1" class="popup">
       <div class="popup-content">
         <span id="closePopup1" class="close">&times;</span>
@@ -136,11 +139,22 @@
       </div>
     </div>
 
+    <!-- <div id="popup3" class="popupAnnotation">
+      <div class="popup-content">
+        <span onclick="closePopup3()" style="cursor:pointer;">&times;</span>
+        <h2>bla bla</h2>
+        <ul>
+          <li>bla bla</li>
+          <li>bla bla</li>
+        </ul>
+      </div>
+    </div> -->
+
     <main>
       <div id="scenario-content" class="info-panel"></div>
       <div class="content-placeholder">
         <div class="banner">
-          <span
+          <span class="banner-text">
             >Bien essayé ! Malheureusement la configuration n'est pas tout à
             fait correcte</span
           >
