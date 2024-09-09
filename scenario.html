@@ -21,39 +21,52 @@
 
         let content = "";
         if (scenario === "1") {
-          // équipement embarqué pour gérer l’air conditionné
-          content = ` 
+
+          // équipement embarqué pour gérer l’air conditionné 1U v1 (A2) le plus simple, un interupteur
+          content = `
             <ul>
-              <span class="highlight">Scénario 1. Composants pour gérer l’air conditionné</span>
-              <li>1 boîtier cockpit panel au format 2U permettant les fonctions suivantes :</li>
-              <ul>
-                <li>Réglage de la vitesse de ventilation <span class="highlight">cabine</span> avec un sélecteur rotatif 5 vitesses et position OFF</li>
-                <li>Réglage de la vitesse de ventilation cockpit avec un sélecteur rotatif 5 vitesses et position OFF </li>
-                <li>Sélection de la source de l’air conditionné avec un sélecteur rotatif 5 positions et position OFF</li>
-                <li>Gestion des clapets en ouverture et fermeture avec un bouton poussoir bistable et retour lumineux intégré au bouton pour visualiser le mode sélectionné</li>
-              </ul>
-              <li>2 cartes électroniques internes au boîtier gérant les fonctions</li>
-              <li>1 harnais pour relier la face avant et l’électronique, avec ses 2 connecteurs CMM 18 points</li>
-              <li>1 harnais pour relier les sélecteurs à l’électronique, avec son connecteur CMM 18 points</li>
-              <li>1 connecteur d’interface client OPTIMUS étanche 4 sorties et son connecteur sur carte AMM 3 types, puissance, signal et coax</li>
+              <p></p>
+              <span class="highlight">[1]  Pour gérez une balise, assemblez :</span>
+              <p></p>
+              <li>1 boîtier électronique au format 1U et son panneau de commande contenant 1 interupteur pour gérer l'allumage, l'extinction et le mode Standby</li>
+              <li>1 harnais pour la connectique interne utilisant 3 connecteurs CMM sur carte et face avant</li>
+              <li>1 Connecteur sur boîtier connecté à la carte</li>
+              <li>En extérieur, 1 connecteur et son backshell cylindrique</li>
             </ul>`;
         } else if (scenario === "2") {
+          // équipement embarqué pour gérer l’air conditionné 1U v2 (A3) un interupteur et un bouton
           content = `
             <ul>
-              <li>Boiter cockpit panel au format 1U devant gérer l’allumage, le standby ou l’extinction d'une balise</li>
-              <li>Boiter cockpit panel au format 1U devant réaliser le pilotage d’un équipement embarqué pour gérer l’allumage, le standby ou l’extinction par un interrupteur. Un voyant témoin de couleur blanc doit renvoyer l’information lorsque l’équipement piloté est en marche</li>
-              <li>Des cartes électroniques interne au boitier gérant les fonctions</li>
-              <li>La connectique interne au boitier de commande afin de relier la Face avant à l’électronique interne est composée d’un harnais à base de connecteurs XX points</li>
-              <li>Le connecteur d’interface client est un connecteur de XX broches MIL38999</li>
+              <p></p>
+              <span class="highlight">[2]  Pour gérez un équipement embarqué :</span>
+              <p></p>
+              <li>1 boîtier électronique au format 1U et son panneau de commande contenant</li>
+              <ul>
+                <li>1 interupteur pour gérer l'allumage et l'extinction</li>
+                <li>1 bouton poussoir pour sélectionner le mode Automatique ou Standby</li>
+              </ul>
+              <li>1 harnais pour la connectique interne utilisant 1 connecteur CMM sur carte et 1 connecteur CMM sur face avant</li>
+              <li>1 harnais d’interface client utilisant 1 connecteur DMM sur boîtier et 1 connecteur CMM sur carte</li>
+              <li>En extérieur, 1 connecteur DMM et son backshell rectangulaire</li>
             </ul>`;
         } else if (scenario === "3") {
-          content = `
+          // équipement embarqué pour gérer l’air conditionné 2U (A1) le plus compliqué
+          content = ` 
             <ul>
-              <li>Boiter cockpit panel au format 1U devant gérer l’allumage ou l’extinction d’un équipement embarqué</li>
-              <li>Boiter cockpit panel au format 1U devant réaliser le pilotage d’un équipement embarqué pour gérer l’allumage ou l’extinction par un interrupteur et une fonction bouton poussoir pour sélectionner un mode Auto/Standby avec un voyant témoin de couleurs jaune intégré au bouton devant renvoyer l’information lorsque l’équipement piloté est en Standby</li>
-              <li>Des cartes électroniques interne au boitier gérant les fonctions</li>
-              <li>La connectique interne au boitier de commande afin de relier la Face avant à l’électronique interne est composée d’un harnais à base de connecteurs XX points</li>
-              <li>Le connecteur d’interface client est un connecteur de XX broches MIL38999</li>
+              <p></p>
+              <span class="highlight">[3]  Pour gérez l’air conditionné, assemblez :</span>
+              <p></p>
+              <li>1 boîtier électronique au format 2U et son panneau de commande contenant</li>
+              <ul>
+                <li>1 sélecteur rotatif 5 vitesses et position OFF pour régler la vitesse de ventilation cabine</li>
+                <li>1 sélecteur rotatif 5 vitesses et position OFF pour régler la vitesse de ventilation cockpit</li>
+                <li>1 sélecteur rotatif 5 positions et position OFF pour sélectionner la source de l’air conditionné</li>
+                <li>1 bouton poussoir bistable pour gérer les clapets en ouverture et fermeture</li>
+              </ul>
+              <li>1 harnais pour connecter ces sélecteurs et bouton à la carte, utilisant 1 connecteur CMM</li>
+              <li>1 harnais pour connecter la face avant à la carte</li>
+              <li>1 harnais d’interface client utilisant 1 connecteur Optimus étanche et 1 connecteur CMM sur carte</li>
+              <li>En extérieur, 1 connecteur Optimus étanche</li>
             </ul>`;
         } else {
           content = "<p>Aucun scénario sélectionné.</p>";

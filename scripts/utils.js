@@ -29,6 +29,7 @@ window.addEventListener("click", function (event) {
 
 function showBanner(isCorrect) {
   const banner = document.querySelector(".banner");
+  const bannerText = document.querySelector(".banner-text");
   const messageSpan = banner.querySelector("span");
 
   // Set the banner color and message based on the correctness
@@ -42,10 +43,11 @@ function showBanner(isCorrect) {
   }
 
   // Make the banner visible
-  banner.style.visibility = "visible";
+  bannerText.style.visibility = "visible";
 
   // Hide the banner after a few seconds
   setTimeout(() => {
-    banner.style.visibility = "hidden";
-  }, 3000); // Adjust timing as needed
+    bannerText.style.visibility = "hidden";
+    banner.style.backgroundColor = "transparent";
+  }, 30000); // Adjust timing as needed
 }

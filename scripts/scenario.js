@@ -45,6 +45,7 @@ const ObjetsScenario = [
   [3, 623 ], //face avant
   [3, 397]   //boitier
 ];
+const ObjetsHide = [  [172], [243],   [385],    [643 ],    [937],     [963]  ];  //les harnais sur la table d'assemblage
 var tableAssy = [];
 var total = 0;
 var totalConsigne = 0;
@@ -92,9 +93,11 @@ const success = (apiClient) => {
     api.addEventListener("viewerready", () => {
         api.getNodeMap(function(err, nodes) {
           if (!err) {window.console.log(nodes); }
-        });
-        api.hide (623, function(err) {}); //harnais 1Uv1
-        api.hide (615, function(err) {}); 
+        });         
+        for (let h = 0; h < ObjetsHide.length; h++) {
+          api.hide (ObjetsHide[h]-2, function(err) {});
+          window.console.log(ObjetsHide[h]-2)
+        };
       //---------------------------------------------
       // affiche les annotations sous forme de bulles semi transparentes
       url = getNewPastilleURL('rgba(200,200,200,.2)', 'rgba(200,200,200,.4)', 'none', 'none', 0, 50, 512, 256); // Couleurs: intérieur, cercle, texte, texte
@@ -108,14 +111,6 @@ const success = (apiClient) => {
               });
           }
       });
-      // affiche du contenu d'annotation en hover par une fenêtre popup
-      // api.addEventListener('annotationMouseEnter', function(index) {
-      //   window.console.log('Hovering on annotation', index);
-        // setTimeout(openPopup, 100); //ouvrir le popup après 2 milisecondes
-        // document.getElementById("openPopup3").addEventListener("click", function () {
-        //   document.getElementById("popup3").style.display = "flex";
-        // });
-      // });
 
       //---------------------------------------------
       api.addEventListener('click',function(info) { 

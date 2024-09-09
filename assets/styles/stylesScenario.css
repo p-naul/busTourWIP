@@ -36,7 +36,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
 .mission-title {
@@ -107,9 +107,8 @@ main {
   padding: 20px;
   background-color: #f0f0f0;
   color: black;
-  border-radius: 10px;
   width: 400px;
-  height: 800px;
+  height: 760px;
 }
 
 .info-panel ul {
@@ -145,6 +144,8 @@ ul ul > li {
   align-items: flex-start; /* Aligner l'icône chevron avec le texte */
   position: relative;
   margin-bottom: 10px; /* Ajout d'un espacement entre les éléments de la sous-liste */
+  margin-left: 30px;
+  font-size: 15px;
 }
 
 ul ul > li::before {
@@ -261,8 +262,12 @@ ul ul li span.material-symbols-outlined {
   z-index: 1000;
   box-sizing: border-box;
   height: 62px;
-  visibility: hidden; /* Initially hidden */
+  /* visibility: hidden;  */
   transition: background-color 0.5s, visibility 0.5s;
+}
+
+.banner span {
+  visibility: hidden;
 }
 
 .banner .timer {

@@ -1,4 +1,107 @@
 client.init(uid, { autostart: 1, autospin: 0, success: success, error: error });
+// Camera logs
+// const cameraData = {
+//   "useCameraConstraints": true,
+//   "usePanConstraints": false,
+//   "useZoomConstraints": true,
+//   "usePitchConstraints": true,
+//   "useYawConstraints": false,
+//   "zoomIn": 50,
+//   "zoomOut": 1500,
+  // rotations horizontales et verticales
+  // "left": -3.1416,
+  // "right": 3.1416,
+  // "up": 1.57,
+  // "down": 0.1,
+// };
+// var annotInitiale = [];
+
+
+var hours = 0;
+  var minutes = 0;
+  var seconds = 0;
+  var timerStarted = false;
+  var timerInterval;
+
+  function addLeadingZero(number) {
+    return number < 10 ? "0" + number : number;
+  }
+
+  function startTimer() {
+    if (!timerStarted) {
+      timerStarted = true;
+      timerInterval = setInterval(function () {
+        seconds++;
+        if (seconds == 60) {
+          minutes++;
+          seconds = 0;
+        }
+        if (minutes == 60) {
+          hours++;
+          minutes = 0;
+        }
+        document.getElementById("timer").textContent =
+          addLeadingZero(hours) +
+          ":" +
+          addLeadingZero(minutes) +
+          ":" +
+          addLeadingZero(seconds);
+      }, 1000);
+    }
+  }
+
+  function resetTimer() {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+    }
+    saveTimeToLocalStorage();
+    displayPopup();
+    hours = 0;
+    minutes = 0;
+    seconds = 0;
+    timerStarted = false;
+    document.getElementById("timer").textContent = "00:00:00";
+  }
+
+  function saveTimeToLocalStorage() {
+    const currentTime =
+      addLeadingZero(hours) +
+      ":" +
+      addLeadingZero(minutes) +
+      ":" +
+      addLeadingZero(seconds);
+    let scores = JSON.parse(localStorage.getItem("timerScores")) || [];
+    scores.push(currentTime);
+    localStorage.setItem("timerScores", JSON.stringify(scores));
+  }
+
+  function displayPopup() {
+    const currentTime =
+      addLeadingZero(hours) +
+      ":" +
+      addLeadingZero(minutes) +
+      ":" +
+      addLeadingZero(seconds);
+    document.getElementById("popupTimer").textContent = currentTime;
+    document.getElementById("timerPopup").style.display = "block";
+  }
+
+  function closePopup() {
+    document.getElementById("timerPopup").style.display = "none";
+  }
+
+  document.querySelectorAll(".favorite").forEach((button) => {
+    button.addEventListener("click", startTimer);
+  });
+
+  // document.getElementById("resetButton").addEventListener("click", resetTimer);
+  // document.getElementById("closePopup").addEventListener("click", closePopup);
+
+  window.onclick = function (event) {
+    if (event.target == document.getElementById("timerPopup")) {
+      closePopup();
+    }
+  };
 
 function computePastilles(wCanvas, hCanvas, bgColor, bgBorderColor, fgColor, fgBorderColor, text, numHotspot, wPastille, hPastille) {
   var wSize = wPastille / 10.0;
@@ -54,7 +157,7 @@ function getNewPastilleURL(bgColor, bgBorderColor, fgColor, fgBorderColor, text,
 
 
 client.init(uid, {
-annotation: 100, // Usage: Setting to [1 – 100] will automatically load that annotation when the viewer starts.
+annotation: 0, // Usage: Setting to [1 – 100] will automatically load that annotation when the viewer starts.
 annotations_visible: 1, // Usage: Setting to 0 will hide annotations by default.
 //   annotation_cycle: 0, // Déroule les annotations avec le nombre de secondes indiquées.
 autospin: 0, // Usage: Setting to any other number will cause the model to automatically spin around the z-axis after loading.
@@ -62,7 +165,7 @@ autostart: 1, // Usage: Setting to 1 will make the model load immediately once t
 camera: 1, // Usage: Setting to 0 will skip the initial animation that occurs when a model is loaded, and immediately show the model in its default position.
 ui_stop: 0, // Usage: Setting to 0 will hide the "Disable Viewer" button in the top right so that users cannot stop the 3D render once it is started.
 transparent: 0, // Usage: Setting to 1 will make the model's background transparent
-ui_animations: 1, // Usage: Setting to 0 will hide the animation menu and timeline.
+ui_animations: 0, // Usage: Setting to 0 will hide the animation menu and timeline.
 ui_annotations: 0, // Usage: Setting to 0 will hide the Annotation menu.
 ui_controls: 1, // Usage: Setting to 0 will hide all the viewer controls at the bottom of the viewer (Help, Settings, Inspector, VR, Fullscreen, Annotations, and Animations).
 ui_fullscreen: 0, // Usage: Setting to 0 will hide the Fullscreen button.
