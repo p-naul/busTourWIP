@@ -33,7 +33,7 @@ const ObjetsScenario = [
   [3, 623 ], //face avant
   [3, 397]   //boitier
 ];
-const ObjetsHide = [  [473],[465],   [1003],[995 ],[987 ],    [675],[667],     [961],[969],     [251],[243],     [172],[183]  ];  //les harnais à cacher sur la table d'assemblage
+const ObjetsHide = [ [493],[477], [1061],[1069],[1053], [1027],[1035], [697],[689],           [473],[465],   [1003],[995 ],[987 ],    [675],[667],     [961],[969],     [251],[243],     [172],[183]  ];  //les harnais à cacher sur la table d'assemblage
 
 //---------------------------------------------
 function openPopup() { // Fonction pour ouvrir le popup
@@ -110,34 +110,34 @@ const success = (apiClient) => {
       api.setAnnotationsTexture(url, function () {});
       //-----------------------------------------------------------------------------------------------------------------------
       const obj = [ //ID selectionnable, ID ref, XYZ ref, famille
-        ['A3-01', -.4806, 0, -.7379, 779 , 795 ,787 ,803 ], //boitier 1U v2
+        ['A3-01', -.4806, 0, -.7379, 845 , 853 ,869 ,861 ], //boitier 1U v2
         ['A1-01',-.3017, 0, -.7228, 115, 123, 135, 146 ],   // boitier 2U
-        ['A2-01', -.1130, 0, -.7295, 547 ,563 ,555 ,0  ],   //boitier 1U v1
+        ['A2-01', -.1130, 0, -.7295, 569 ,585 ,577 ,0  ],   //boitier 1U v1
         // table devant à gauche
         ['A1-02',-.8675, 0, -.308, 5 ,0 ,0 ,0  ],     // face avant 2U
-        ['A2-02',-.6924, 0, -.3063, 585 ,0 ,0 ,0  ], // face avant  1U v1
-        ['A3-02', -.539, 0, -.3225, 873 ,879 ,0 ,0  ],  // face avant  1U v2
+        ['A2-02',-.6924, 0, -.3063, 607 ,0 ,0 ,0  ], // face avant  1U v1
+        ['A3-02', -.539, 0, -.3225, 939 ,879 ,0 ,0  ],  // face avant  1U v2
 
-        ['A3-12',-.432, 0, -.2653, 851 ,0 ,0 ,0  ],     // bouton de gauche
+        ['A3-12',-.432, 0, -.2653, 917 ,0 ,0 ,0  ],     // bouton de gauche
         ['A1-14',-.4431, 0, -.27485, 37 ,0 ,0 ,0  ], // bouton de droite
 
-        ['A2-13', -.411, 0, -.2974, 623 ,629 ,0 ,0  ],  // interrupteur
-        ['A3-11', -.40166, 0, -.2764, 829 ,835 ,0 ,0  ],  // interrupteur
+        ['A2-13', -.411, 0, -.2974, 645 ,651 ,0 ,0  ],  // interrupteur
+        ['A3-11', -.40166, 0, -.2764, 895 ,901 ,0 ,0  ],  // interrupteur
 
         ['A1-13', -.4497, 0, -.3033, 71 ,0 ,0 ,0  ],  // potar
         ['A1-12', -.45595, 0, -.3212, 49 ,0 ,0 ,0  ],  // potar
         ['A1-11', -.4494, 0, -.4228, 93 ,0 ,0 ,0  ],  // potar
 
         // table devant à droite
-        ['A3-32',.4675, 0, -.3822, 693  ,0 ,0 ,0  ],     // backshell cylindrique
-        ['A2-15',.4903, 0, -.33515, 1209 ,0 ,0 ,0  ]     // backshell  rectangulaire
+        ['A3-32',.4675, 0, -.3822, 715  ,0 ,0 ,0  ],     // backshell cylindrique
+        ['A2-15',.4903, 0, -.33515, 1275 ,0 ,0 ,0  ]     // backshell  rectangulaire
       ];
       //---------------------------------------------
       api.addEventListener('click',function(info) { 
         window.console.log('clicked node', info.instanceID);
         // window.console.log(info);
         if (info.instanceID) {  // le clic se fait effectivement sur un objet 
-          if (info.instanceID != 1581) { //clic d'autre chose que la scène  
+          if (info.instanceID != 1647) { //clic d'autre chose que la scène  
             
             
             if (info.position3D[1] < 0 ) { // l'objet est sur la table (position Y < 0) alors retour à sa position initiale
