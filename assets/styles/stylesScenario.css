@@ -219,7 +219,7 @@ ul ul li span.material-symbols-outlined {
 .popup-content {
   background-color: white;
   color: black;
-  padding: 20px;
+  /* padding: 30px; */
   border-radius: 10px;
   width: 400px;
   max-width: 80%;
@@ -229,12 +229,13 @@ ul ul li span.material-symbols-outlined {
 }
 
 .popup-content h2 {
-  margin-top: 0;
+  margin-top: 20;
+  margin-left: 30px;
 }
 
 .popup-content ul {
   list-style-type: disc;
-  margin-left: 20px;
+  margin-left: 0px;
 }
 
 .close {

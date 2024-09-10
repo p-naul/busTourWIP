@@ -157,8 +157,8 @@ function getNewPastilleURL(bgColor, bgBorderColor, fgColor, fgBorderColor, text,
 
 
 client.init(uid, {
-annotation: 0, // Usage: Setting to [1 – 100] will automatically load that annotation when the viewer starts.
-annotations_visible: 1, // Usage: Setting to 0 will hide annotations by default.
+// annotation: 0, // Usage: Setting to [1 – 100] will automatically load that annotation when the viewer starts.
+// annotations_visible: 1, // Usage: Setting to 0 will hide annotations by default.
 //   annotation_cycle: 0, // Déroule les annotations avec le nombre de secondes indiquées.
 autospin: 0, // Usage: Setting to any other number will cause the model to automatically spin around the z-axis after loading.
 autostart: 1, // Usage: Setting to 1 will make the model load immediately once the page is ready, rather than waiting for a user to click the Play button.
