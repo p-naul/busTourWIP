@@ -91,12 +91,12 @@ const success = (apiClient) => {
         [[-.5, .5, .32], [-.1, .2, .6], [-.5, .52, .36], 'Boîtier 1U avec électronique version 2', '', '', '' ],
         [[-.3, .5, .32], [.1, .2, .6], [-.3, .52, .36], 'Boîtier au format 2U', '', '', '' ],
         [[-.1, .5, .32], [.3, .2, .6], [-.1, .52, .36], 'Boîtier 1U avec électronique version 1', '', '', '' ],
-        [[.4, .5, .32], [.3, .12, .6], [.4, .5, .36], 'Harnais', '', '', '' ],
+        [[.4, .5, .32], [.3, .12, .6], [.4, .5, .36], 'Harnais avec micro connecteurs CMM', '', '', '' ],
         [[.27, .62, .32], [0, .12, .6], [.27, .65, .36], 'AMM - Connecteur pas 1mm', 'Solution connectique pour les problématiques critiques d\'encombrement. L\'AMM propose de 10 à 50 contacts distribués sur 2 rangées. Il  est facile à configurer avec mâle et femelle traversant sur CI, mâle et femelle CMS sur CI et femelle sur câbles.', '', '' ],
         [[.4, .62, .32], [.1, .12, .6], [.4, .65, .36], 'Micro connecteurs CMM - Au pas de 2mm - MIL-DTL-55302F', 'Extrême modularité : contacts HF, HP, LF, de 1 à 3 rangées et jusqu\'à 120 contacts (+ de 20 million de configurations en standard). Architecture flexible pour carte à carte, carte à fil, et fil à fil. Gain important d\'espace', '', '' ],
         [[.6, .62, .32], [.4, .12, .6], [.6, .65, .36], 'Connecteurs Micro EMM - Pas de 1,27 mm MIL-DTL-83513', 'Intègre des caractéristiques clés telles que des contacts inversés, une protection arrière intégrée à 90° et des accessoires interchangeables. Adapté aux configurations carte-à-carte (grâce à sa longueur de contact sécurisée) et carte-à-fil (de la jauge 24 à la jauge 30), la sélection de broches EMM est disponible de 4 à 60 contacts de signal', '', '' ],
         [[.4, .15, .32], [.3, 0, .6], [.4, .15, .36], 'Backshell', '', '', '' ],
-        [[.5, .15, .32], [.4, 0, .5], [.5, .15, .36], 'Connecteur extérieur', '', '', '' ],
+        [[.5, .25, .32], [.4, 0, .5], [.5, .25, .36], 'Connecteur cylindrique', '', '', '' ],
         [[.5, .18, .32], [.4, 0, .5], [.5, .18, .36],  'DMM connecteurs métalliques - Au pas de 2mm', 'Conformes aux performances de la norme MIL-DTL-83513G. Le DMM permet un gain d\'encombrement etune excellente réponse face à des problématiques d\'EMI-RFI et de protection mécanique. ', '', '' ],
         [[.55, .21, .32], [.4, 0, .5], [.55, .21, .36],  'OPTIMUS / EN4165 CONNECTEUR ETANCHE', ' ', '', '' ],
         [[.75, .15, .32], [.75, 0, .5], [.75, .15, .36], 'Harnais connecté au boîtier', 'Modulaire, étanche, répondant aux exigences EMI de ce standard, empilable, adapté aux panneaux ou aux fonds de paniers', '', '' ],
@@ -137,8 +137,7 @@ const success = (apiClient) => {
         window.console.log('clicked node', info.instanceID);
         // window.console.log(info);
         if (info.instanceID) {  // le clic se fait effectivement sur un objet 
-          if (info.instanceID != 1581) { //clic d'autre chose que la scène   
-            api.setCameraLookAt([0, -1, .7], [0, -.2, .3], 4.3, function(err) {}); //setCameraLookAt( position, target, [duration], [callback] )
+          if (info.instanceID != 1581) { //clic d'autre chose que la scène  
             
             
             if (info.position3D[1] < 0 ) { // l'objet est sur la table (position Y < 0) alors retour à sa position initiale
@@ -177,6 +176,7 @@ const success = (apiClient) => {
 
 
               };
+              api.setCameraLookAt([0, -1, .7], [0, -.2, .3], 4.3, function(err) {}); //setCameraLookAt( position, target, [duration], [callback] )
               // if (info.instanceID == 212 ) {
               //   api.hide (212, function(err) {}); //212
               //   api.hide (204, function(err) {}); 
