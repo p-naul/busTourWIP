@@ -140,17 +140,6 @@
       </div>
     </div>
 
-    <!-- <div id="popup3" class="popupAnnotation">
-      <div class="popup-content">
-        <span onclick="closePopup3()" style="cursor:pointer;">&times;</span>
-        <h2>bla bla</h2>
-        <ul>
-          <li>bla bla</li>
-          <li>bla bla</li>
-        </ul>
-      </div>
-    </div> -->
-
     <main>
       <div id="scenario-content" class="info-panel"></div>
       <div class="content-placeholder">
@@ -159,17 +148,13 @@
             >Bien essayé ! Malheureusement la configuration n'est pas tout à
             fait correcte</span
           >
-          <div class="timer">00:04:26</div>
+          <div class="timer" id="timer">00:00:00</div>
         </div>
         <div><iframe src="" id="api-frame"></iframe></div>
       </div>
     </main>
-    <button onclick="showBanner(true)">Correct</button>
-    <button onclick="showBanner(false)">Incorrect</button>
-
-    <!-- <button name="S1">1</button>
-    <button name="S2">2</button>
-    <button name="S3">3</button> -->
+    <!-- <button onclick="showBanner(true)">Correct</button>
+    <button onclick="showBanner(false)">Incorrect</button> -->
     <input type="range" min="0" max="3" value="0" class="slider" id="solution">
 
     <script type="text/javascript" src="./scripts/scenario.js"></script>

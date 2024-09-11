@@ -5,6 +5,35 @@ let api;
 // const uid = "3c97912b6c0d4193a963f253ade24749"; //busTour7
 const uid = "cb264ca05beb4abfb696514612734112";
 
+var tps = 0;
+var resussite = 0;
+var hours = 0;
+var minutes = 0;
+var seconds = 0;
+function addLeadingZero(number) {
+    if (number < 10) {
+      return "0" + number;
+    } else {
+      return number;
+    }
+}
+setInterval(function() {  // Mise à jour du timer toutes les secondes
+    seconds++;
+    if (seconds == 60) {
+      minutes++;
+      seconds = 0;
+    }
+    if (minutes == 60) {
+      hours++;
+      minutes = 0;
+    }    
+    if (resussite == 0) {
+      document.getElementById('timer').textContent = addLeadingZero(hours) + ":" + addLeadingZero(minutes) + ":" + addLeadingZero(seconds);
+    };
+}, 1000);
+
+
+
 
 var sontEgaux = false;
 var assyBoitier = 0;
@@ -228,15 +257,20 @@ const success = (apiClient) => {
           
           //----------------------------------------------------------------------------------------------------------------------- 
           if (info.instanceID == 1633) { //clic sur le buzzer => vérification de la correspondance entre les objets sur table et la consigne
-            window.console.log("objets sur la table :", tableAssy)
-            window.console.log("consigne :", consigne)
+            // window.console.log("objets sur la table :", tableAssy)
+            // window.console.log("consigne :", consigne)
             sontEgaux = consigne.length ===
              tableAssy.length && consigne.every((valeur, index) => valeur === tableAssy[index]);
-            if (sontEgaux == true) {showBanner(true)
+            if (sontEgaux == true) {
+              showBanner(true)
+              resussite = 1;
+              api.hide(1633-2); //cache le buzzer
             } else {showBanner(false)}
           }
           //----------------------------------------------------------------------------------------------------------------------- 
           if (info.instanceID == 1662) { //clic sur le bouton solution => affiche la solution en 3D sur la table 
+            resussite = 1;
+            api.hide(1633-2); //cache le buzzer
             //retourne les composants à leur place et vide le tableau "tableAssy"
             for (let i = 0; i < obj.length; i++) { 
               api.translate(obj[i][4]-2, [obj[i][1], obj[i][2], obj[i][3]], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});

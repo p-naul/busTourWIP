@@ -48,6 +48,7 @@ function showBanner(isCorrect) {
   // Hide the banner after a few seconds
   setTimeout(() => {
     bannerText.style.visibility = "hidden";
-    banner.style.backgroundColor = "transparent";
+    // banner.style.backgroundColor = "transparent";
+    banner.style.backgroundColor = "rgba(60,179,113, .1)" ;
   }, 30000); // Adjust timing as needed
 }
