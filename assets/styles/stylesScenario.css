@@ -282,3 +282,26 @@ ul ul li span.material-symbols-outlined {
 .green-banner {
   background-color: #4ecb71; /* Green color for correct answer */
 }
+
+.slidecontainer {
+  width: 10%; /* Width of the outside container */
+}
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 10%; /* Full-width */
+  height: 2px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 40px; /* Set a specific slider handle width */
+  height: 40px; /* Slider handle height */
+  background: #0a1aff; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
