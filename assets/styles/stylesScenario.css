@@ -300,8 +300,8 @@ ul ul li span.material-symbols-outlined {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  width: 40px; /* Set a specific slider handle width */
-  height: 40px; /* Slider handle height */
-  background: #0a1aff; /* Green background */
+  width: 30px; /* Set a specific slider handle width */
+  height: 30px; /* Slider handle height */
+  background: #f1ff2d; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
