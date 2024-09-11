@@ -220,52 +220,7 @@ const success = (apiClient) => {
             };
 
           };
-          //-----------------------------------------------------------------------------------------------------------------------
-          document.getElementById("solution").addEventListener("input", function(){ //au curseur, assemble au centre
-            sliderSolution = document.getElementById("solution").value;
-            //retourne les composants à leur place et vide le tableau "tableAssy"
-            for (let i = 0; i < obj.length; i++) { 
-              api.translate(obj[i][4]-2, [obj[i][1], obj[i][2], obj[i][3]], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
-              tableAssy.splice(0, tableAssy.length);
-            };
-            // puis la recharge avec la selection du slider
-            for (let i = 0; i < obj.length; i++) { 
-              var nom = obj[i][0];
-              nom = nom.slice(0, 2);  
-              if (sliderSolution == 1) {
-                if (nom == 'A2') {  
-                  api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
-                };
-              }
-              if (sliderSolution == 2) {
-                if (nom == 'A3') {  
-                  api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
-                };
-              }
-              if (sliderSolution == 3) {
-                if (nom == 'A1') {  
-                  api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
-                };
-              }
-
-
-
-
-              // if (sliderSolution == 2) {
-              //   if ((nom == 'A3-0') || (nom == 'A3-1') || (nom == 'A3-2')) {  
-              //     api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
-              //   };
-              // }
-              // if (sliderSolution == 3) {
-              //   if ((nom == 'A1-0') || (nom == 'A1-1') || (nom == 'A1-2')) {  
-              //     api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
-              //   };
-              // }           
-
-            };
-          });
-
-
+          
           //----------------------------------------------------------------------------------------------------------------------- 
           if (info.instanceID == 913) { //clic sur le buzzer => vérification de la correspondance entre les objets sur table et la consigne
             window.console.log("objets sur la table :", tableAssy)
@@ -274,9 +229,60 @@ const success = (apiClient) => {
             if (sontEgaux == true) {showBanner(true)
             } else {showBanner(false)}
           }
-          //-----------------------------------------------------------------------------------------------------------------------
+          
         }
       }); 
+
+
+
+
+
+      //-----------------------------------------------------------------------------------------------------------------------
+      document.getElementById("solution").addEventListener("input", function(){ //au curseur, assemble au centre
+        sliderSolution = document.getElementById("solution").value;
+        //retourne les composants à leur place et vide le tableau "tableAssy"
+        for (let i = 0; i < obj.length; i++) { 
+          api.translate(obj[i][4]-2, [obj[i][1], obj[i][2], obj[i][3]], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
+          tableAssy.splice(0, tableAssy.length);
+        };
+        // puis la recharge avec la selection du slider
+        for (let i = 0; i < obj.length; i++) { 
+          var nom = obj[i][0];
+          nom = nom.slice(0, 2);  
+          if (sliderSolution == 1) {
+            if (nom == 'A2') {  
+              api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
+            };
+          }
+          if (sliderSolution == 2) {
+            if (nom == 'A3') {  
+              api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
+            };
+          }
+          if (sliderSolution == 3) {
+            if (nom == 'A1') {  
+              api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
+            };
+          }
+
+          // if (sliderSolution == 2) {
+          //   if ((nom == 'A3-0') || (nom == 'A3-1') || (nom == 'A3-2')) {  
+          //     api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
+          //   };
+          // }
+          // if (sliderSolution == 3) {
+          //   if ((nom == 'A1-0') || (nom == 'A1-1') || (nom == 'A1-2')) {  
+          //     api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
+          //   };
+          // }           
+
+        };
+      });
+
+
+
+
+      
 
     });
   });
