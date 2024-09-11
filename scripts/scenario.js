@@ -38,7 +38,7 @@ const Anot = [   // pour createAnnotationFromWorldPosition( annotation position,
   [[.4, .62, .32], [.1, .12, .6], [.4, .65, .36], 'Micro connecteurs CMM - Au pas de 2mm - MIL-DTL-55302F', 'Extrême modularité : contacts HF, HP, LF, de 1 à 3 rangées et jusqu\'à 120 contacts (+ de 20 million de configurations en standard). Architecture flexible pour carte à carte, carte à fil, et fil à fil. Gain important d\'espace', '', '' ],
   [[.6, .62, .32], [.4, .12, .6], [.6, .65, .36], 'Connecteurs Micro EMM - Pas de 1,27 mm MIL-DTL-83513', 'Intègre des caractéristiques clés telles que des contacts inversés, une protection arrière intégrée à 90° et des accessoires interchangeables. Adapté aux configurations carte-à-carte (grâce à sa longueur de contact sécurisée) et carte-à-fil (de la jauge 24 à la jauge 30), la sélection de broches EMM est disponible de 4 à 60 contacts de signal', '', '' ],
   [[.4, .15, .32], [.3, 0, .6], [.4, .15, .36], 'Backshell', '', '', '' ],
-  [[.5, .25, .32], [.4, 0, .5], [.5, .25, .36], 'Connecteur cylindrique', '', '', '' ],
+  [[.5, .25, .32], [.4, 0, .5], [.5, .25, .36], 'Connecteur cylindrique', 'Le connecteur Type 38999 Série 3 est une solution hautement configurable et personnalisable, conçue pour répondre aux besoins spécifiques des clients dans des environnements exigeants. Ce connecteur "vide" offre une flexibilité maximale, permettant à l\'utilisateur de créer des agencements internes adaptés à vos exigences en matière de câblage et d\'interconnexion. Grâce à ce niveau de personnalisation, les utilisateurs peuvent optimiser leurs solutions de connectivité afin de répondre aux contraintes techniques de leurs projets, tout en garantissant une performance fiable et durable.', '', '' ],
   [[.5, .18, .32], [.4, 0, .5], [.5, .18, .36],  'DMM connecteurs métalliques - Au pas de 2mm', 'Conformes aux performances de la norme MIL-DTL-83513G. Le DMM permet un gain d\'encombrement etune excellente réponse face à des problématiques d\'EMI-RFI et de protection mécanique. ', '', '' ],
   [[.55, .21, .32], [.4, 0, .5], [.55, .21, .36],  'OPTIMUS / EN4165 CONNECTEUR ETANCHE', ' ', '', '' ],
   [[.75, .15, .32], [.75, 0, .5], [.75, .15, .36], 'Harnais connecté au boîtier', 'Modulaire, étanche, répondant aux exigences EMI de ce standard, empilable, adapté aux panneaux ou aux fonds de paniers', '', '' ],
@@ -114,11 +114,16 @@ const obj = [ //ID selectionnable, ID ref, XYZ ref, famille
 for (let s = 0; s < obj.length; s++) {
   var nom = obj[s][0];
   nom = nom.slice(0, 4);   
-  if ((nom == 'A1-0') || (nom == 'A1-1') || (nom == 'A1-3')) {  Scenario_3_A1.push(obj[s][4])  };
   if ((nom == 'A2-0') || (nom == 'A2-1') || (nom == 'A2-3')) {  Scenario_1_A2.push(obj[s][4])  };
   if ((nom == 'A3-0') || (nom == 'A3-1') || (nom == 'A3-3')) {  Scenario_2_A3.push(obj[s][4])  };
+  if ((nom == 'A1-0') || (nom == 'A1-1') || (nom == 'A1-3')) {  Scenario_3_A1.push(obj[s][4])  };
 };
-// console.log(Scenario_3_A1, Scenario_1_A2, Scenario_2_A3);
+const scenario = getScenario();
+console.log("Scenario sélectionné :", scenario);
+if (scenario == 1) { consigne = Scenario_1_A2};
+if (scenario == 2) { consigne = Scenario_2_A3};
+if (scenario == 3) { consigne = Scenario_3_A1};
+console.log(Scenario_1_A2, Scenario_2_A3, Scenario_3_A1);
 
 //-----------------------------------------------------------------------------------------------------------------------
 function openPopup() { // Fonction pour ouvrir le popup
@@ -130,9 +135,6 @@ function closePopup() {  // Fonction pour fermer le popup
   popup.style.display = "none";
 }
 //-----------------------------------------------------------------------------------------------------------------------
-const scenario = getScenario();
-console.log("Scenario sélectionné :", scenario);
-
 
 
 
@@ -201,19 +203,22 @@ const success = (apiClient) => {
                   api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
                   // if ((clic == obj[i][4]) || (clic == obj[i][5])) {api.translate(obj[i][8]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});} //cache le harnais en forme
                   total = tableAssy.push(obj[i][4]);
-                  window.console.log("objets sur la table :", tableAssy);
+                  
                   if ((i>-1) && (i<3)) { // c'est un boîtier
                     if (lastBoitier[0] != 0) {
                       api.translate(lastBoitier[3]-2, [lastBoitier[0], lastBoitier[1], lastBoitier[2]], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
+                      tableAssy = tableAssy.filter((element) => element !== lastBoitier[3]);
                     };
                     for (let j = 0; j < 4; j++) { lastBoitier[j] = obj[i][j+1] }; 
                   };
                   if ((i>2) && (i<6)) { // c'est une face avant
                     if (lastFaceAvant[0] != 0) {
                       api.translate(lastFaceAvant[3]-2, [lastFaceAvant[0], lastFaceAvant[1], lastFaceAvant[2]], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
+                      tableAssy = tableAssy.filter((element) => element !== lastFaceAvant[3]);
                     };
                     for (let j = 0; j < 4; j++) { lastFaceAvant[j] = obj[i][j+1] }; 
                   };
+                  window.console.log("objets sur la table :", tableAssy);
                 };
               };
               // api.setCameraLookAt([0, -1, .7], [0, -.2, .3], 4.3, function(err) {}); //setCameraLookAt( position, target, [duration], [callback] )
@@ -222,20 +227,56 @@ const success = (apiClient) => {
           };
           
           //----------------------------------------------------------------------------------------------------------------------- 
-          if (info.instanceID == 913) { //clic sur le buzzer => vérification de la correspondance entre les objets sur table et la consigne
+          if (info.instanceID == 1633) { //clic sur le buzzer => vérification de la correspondance entre les objets sur table et la consigne
             window.console.log("objets sur la table :", tableAssy)
+            window.console.log("consigne :", consigne)
             sontEgaux = consigne.length ===
              tableAssy.length && consigne.every((valeur, index) => valeur === tableAssy[index]);
             if (sontEgaux == true) {showBanner(true)
             } else {showBanner(false)}
           }
-          
+          //----------------------------------------------------------------------------------------------------------------------- 
+          if (info.instanceID == 1662) { //clic sur le bouton solution => affiche la solution en 3D sur la table 
+            //retourne les composants à leur place et vide le tableau "tableAssy"
+            for (let i = 0; i < obj.length; i++) { 
+              api.translate(obj[i][4]-2, [obj[i][1], obj[i][2], obj[i][3]], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
+              tableAssy.splice(0, tableAssy.length);
+            };
+            // puis la recharge avec la selection du scenario
+            if (scenario == 1) {
+              for (let j = 0; j < Scenario_1_A2.length; j++) {
+                for (let i = 0; i < obj.length; i++) {
+                  if (obj[i][4] == Scenario_1_A2[j]) {
+                    api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
+                    tableAssy.push(obj[i][4]);
+                  };
+                };
+              };
+            };
+            if (scenario == 2) {
+              for (let j = 0; j < Scenario_2_A3.length; j++) {
+                for (let i = 0; i < obj.length; i++) {
+                  if (obj[i][4] == Scenario_2_A3[j]) {
+                    api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
+                    tableAssy.push(obj[i][4]);
+                  };
+                };
+              };
+            };
+            if (scenario == 3) {
+              for (let j = 0; j < Scenario_3_A1.length; j++) {
+                for (let i = 0; i < obj.length; i++) {
+                  if (obj[i][4] == Scenario_3_A1[j]) {
+                    api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
+                    tableAssy.push(obj[i][4]);
+                  };
+                };
+              };
+            };
+
+          }
         }
       }); 
-
-
-
-
 
       //-----------------------------------------------------------------------------------------------------------------------
       document.getElementById("solution").addEventListener("input", function(){ //au curseur, assemble au centre
@@ -246,43 +287,45 @@ const success = (apiClient) => {
           tableAssy.splice(0, tableAssy.length);
         };
         // puis la recharge avec la selection du slider
-        for (let i = 0; i < obj.length; i++) { 
-          var nom = obj[i][0];
-          nom = nom.slice(0, 2);  
-          if (sliderSolution == 1) {
-            if (nom == 'A2') {  
-              api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
+        // if (scenario == 1) { consigne = Scenario_1_A2};
+        // if (scenario == 2) { consigne = Scenario_2_A3};
+        // if (scenario == 3) { consigne = Scenario_3_A1};
+        if (sliderSolution == 1) {
+          for (let j = 0; j < Scenario_1_A2.length; j++) {
+            // window.console.log(Scenario_1_A2[j])
+            for (let i = 0; i < obj.length; i++) {
+              if (obj[i][4] == Scenario_1_A2[j]) {
+                // window.console.log(Scenario_1_A2[j], obj[i][4])
+                api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
+                tableAssy.push(obj[i][4]);
+              };
             };
-          }
-          if (sliderSolution == 2) {
-            if (nom == 'A3') {  
-              api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
-            };
-          }
-          if (sliderSolution == 3) {
-            if (nom == 'A1') {  
-              api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
-            };
-          }
-
-          // if (sliderSolution == 2) {
-          //   if ((nom == 'A3-0') || (nom == 'A3-1') || (nom == 'A3-2')) {  
-          //     api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
-          //   };
-          // }
-          // if (sliderSolution == 3) {
-          //   if ((nom == 'A1-0') || (nom == 'A1-1') || (nom == 'A1-2')) {  
-          //     api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
-          //   };
-          // }           
-
+          };
         };
+        if (sliderSolution == 2) {
+          for (let j = 0; j < Scenario_2_A3.length; j++) {
+            for (let i = 0; i < obj.length; i++) {
+              if (obj[i][4] == Scenario_2_A3[j]) {
+                api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
+                tableAssy.push(obj[i][4]);
+              };
+            };
+          };
+        };
+        if (sliderSolution == 3) {
+          for (let j = 0; j < Scenario_3_A1.length; j++) {
+            for (let i = 0; i < obj.length; i++) {
+              if (obj[i][4] == Scenario_3_A1[j]) {
+                api.translate(obj[i][4]-2, [0, 0, 0], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {}); 
+                tableAssy.push(obj[i][4]);
+              };
+            };
+          };
+        };
+
+
       });
 
-
-
-
-      
 
     });
   });
