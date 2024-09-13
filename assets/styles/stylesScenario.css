@@ -292,7 +292,7 @@ ul ul li span.material-symbols-outlined {
   appearance: none;
   width: 10%; /* Full-width */
   height: 5px; /* Specified height */
-  background: #d3d3d3; /* Grey background */
+  background: black; /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
@@ -303,7 +303,7 @@ ul ul li span.material-symbols-outlined {
   appearance: none;
   width: 30px; /* Set a specific slider handle width */
   height: 30px; /* Slider handle height */
-  background: #ff0202; /* Green background */
+  background: black; /* Green background */
   cursor: pointer; /* Cursor on hover */
   border-radius: 15px;
 }

@@ -2,8 +2,9 @@
 const iframe = document.getElementById("api-frame");
 var client = new Sketchfab( iframe );
 let api;
-// const uid = "3c97912b6c0d4193a963f253ade24749"; //busTour7
-const uid = "cb264ca05beb4abfb696514612734112";
+
+// const uid = "cb264ca05beb4abfb696514612734112"; //busTour8 FR
+const uid = "6fc502477c6047fe9d20653ab6c7d619"; //busTour8 EN
 
 var tps = 0;
 var resussite = 0;
@@ -54,23 +55,66 @@ var sliderSolution = 0;
 
 //-----------------------------------------------------------------------------------------------------------------------
 const Anot = [   // pour createAnnotationFromWorldPosition( annotation position, camera position (eye) and target, titleFR, textFR, titleEN, textEN, [callback] )
-  [[0, -.2, .32], [0, -.5, .6], [0, -.2, .4], 'Votre configuration', 'Vérifiez-la en appuyant sur le buzzer', '', '' ],
-  [[-.8, .08, .32], [-.4, 0, .6], [-.8, .1, .34], 'Face avant 2U', '', '', '' ],
-  [[-.65, .08, .32], [-.25, 0, .6], [-.65, .1, .34], 'Face avant 1U version 1', '', '', '' ],
-  [[-.5, .08, .32], [-.1, 0, .6], [-.5, .1, .34], 'Face avant 1U version 2', '', '', '' ],
-  [[-.35, .08, .32], [.05, 0, .6], [-.35, .1, .34], 'Boutons', '', '', '' ],
-  [[-.5, .5, .32], [-.1, .2, .6], [-.5, .52, .36], 'Boîtier 1U avec électronique version 2', '', '', '' ],
-  [[-.3, .5, .32], [.1, .2, .6], [-.3, .52, .36], 'Boîtier au format 2U', '', '', '' ],
-  [[-.1, .5, .32], [.3, .2, .6], [-.1, .52, .36], 'Boîtier 1U avec électronique version 1', '', '', '' ],
-  [[.4, .5, .32], [.3, .12, .6], [.4, .5, .36], 'Harnais avec micro connecteurs CMM', '', '', '' ],
-  [[.27, .62, .32], [0, .12, .6], [.27, .65, .36], 'AMM - Connecteur pas 1mm', 'Solution connectique pour les problématiques critiques d\'encombrement. L\'AMM propose de 10 à 50 contacts distribués sur 2 rangées. Il  est facile à configurer avec mâle et femelle traversant sur CI, mâle et femelle CMS sur CI et femelle sur câbles.', '', '' ],
-  [[.4, .62, .32], [.1, .12, .6], [.4, .65, .36], 'Micro connecteurs CMM - Au pas de 2mm - MIL-DTL-55302F', 'Extrême modularité : contacts HF, HP, LF, de 1 à 3 rangées et jusqu\'à 120 contacts (+ de 20 million de configurations en standard). Architecture flexible pour carte à carte, carte à fil, et fil à fil. Gain important d\'espace', '', '' ],
-  [[.6, .62, .32], [.4, .12, .6], [.6, .65, .36], 'Connecteurs Micro EMM - Pas de 1,27 mm MIL-DTL-83513', 'Intègre des caractéristiques clés telles que des contacts inversés, une protection arrière intégrée à 90° et des accessoires interchangeables. Adapté aux configurations carte-à-carte (grâce à sa longueur de contact sécurisée) et carte-à-fil (de la jauge 24 à la jauge 30), la sélection de broches EMM est disponible de 4 à 60 contacts de signal', '', '' ],
-  [[.4, .15, .32], [.3, 0, .6], [.4, .15, .36], 'Backshell', '', '', '' ],
-  [[.5, .25, .32], [.4, 0, .5], [.5, .25, .36], 'Connecteur cylindrique', 'Le connecteur Type 38999 Série 3 est une solution hautement configurable et personnalisable, conçue pour répondre aux besoins spécifiques des clients dans des environnements exigeants. Ce connecteur "vide" offre une flexibilité maximale, permettant à l\'utilisateur de créer des agencements internes adaptés à vos exigences en matière de câblage et d\'interconnexion. Grâce à ce niveau de personnalisation, les utilisateurs peuvent optimiser leurs solutions de connectivité afin de répondre aux contraintes techniques de leurs projets, tout en garantissant une performance fiable et durable.', '', '' ],
-  [[.5, .18, .32], [.4, 0, .5], [.5, .18, .36],  'DMM connecteurs métalliques - Au pas de 2mm', 'Conformes aux performances de la norme MIL-DTL-83513G. Le DMM permet un gain d\'encombrement etune excellente réponse face à des problématiques d\'EMI-RFI et de protection mécanique. ', '', '' ],
-  [[.55, .21, .32], [.4, 0, .5], [.55, .21, .36],  'OPTIMUS / EN4165 CONNECTEUR ETANCHE', ' ', '', '' ],
-  [[.75, .15, .32], [.75, 0, .5], [.75, .15, .36], 'Harnais connecté au boîtier', 'Modulaire, étanche, répondant aux exigences EMI de ce standard, empilable, adapté aux panneaux ou aux fonds de paniers', '', '' ],
+  [[0, -.2, .32], [0, -.5, .6], [0, -.2, .4], 
+    'Votre configuration', 'Vérifiez-la en appuyant sur le buzzer', 
+    'Your choice', 'Check by pressing the golden globe' ],
+  [[-.8, .08, .32], [-.4, 0, .6], [-.8, .1, .34], 
+    'Face avant 2U', '', 
+    'Panel 2U', '' ],
+  [[-.65, .08, .32], [-.25, 0, .6], [-.65, .1, .34], 
+    'Face avant 1U version 1', '', 
+    'Panel 1U version 1', '' ],
+  [[-.5, .08, .32], [-.1, 0, .6], [-.5, .1, .34], 
+    'Face avant 1U version 2', '', 
+    'Panel 1U version 2', '' ],
+  [[-.35, .1, .32], [.05, .2, .6], [-.35, .12, .34], 
+    'Boutons', '', 
+    'Buttons', '' ],
+    [[-.35, .18, .32], [.05, .1, .6], [-.35, .2, .34], 
+    'Interrupteurs', '', 
+    'Switches', '' ],
+    [[-.35, .25, .32], [.05, .17, .6], [-.35, .27, .34], 
+    'Sélecteurs rotatifs', '', 
+    'Rotary switches', '' ],
+  [[-.5, .5, .32], [-.1, .2, .6], [-.5, .52, .36], 
+    'Boîtier 1U avec électronique version 2', '', 
+    'Electronic box 1U version 2', '' ],
+  [[-.3, .5, .32], [.1, .2, .6], [-.3, .52, .36], 
+    'Boîtier au format 2U', '', 
+    'Electronic box 2U', '' ],
+  [[-.1, .5, .32], [.3, .2, .6], [-.1, .52, .36], 
+    'Boîtier 1U avec électronique version 1', '', 
+    'Electronic box 1U version 1', '' ],
+  [[.4, .5, .32], [.3, .12, .6], [.4, .5, .36], 
+    'Harnais avec micro connecteurs CMM', '', 
+    'Harness with micro connector CMM', '' ],
+  [[.27, .62, .32], [0, .12, .6], [.27, .65, .36], 
+    'AMM - Connecteur pas 1mm', 'Solution connectique pour les problématiques critiques d\'encombrement. L\'AMM propose de 10 à 50 contacts distribués sur 2 rangées. Il  est facile à configurer avec male et femelle traversant sur CI, mâle et femelle CMS sur CI et femelle sur câbles.', 
+    'AMM connector with 1mm pitch', 'The solution for the most demanding space constraint issues. This AMM offers 5 standard from 10 to 50 contacts distributed over two rows. It is easy to configure: male and female straight through PCB, male and female SMT on PCB, female on cables.' ],
+  [[.4, .62, .32], [.1, .12, .6], [.4, .65, .36], 
+    'Micro connecteurs CMM - Au pas de 2mm - MIL-DTL-55302F', 'Extrême modularité : contacts HF, HP, LF, de 1 à 3 rangées et jusqu\'à 120 contacts (+ de 20 million de configurations en standard). Architecture flexible pour carte à carte, carte à fil, et fil à fil. Gain important d\'espace', 
+    'CMM Micro connectors - 2mm pitch MIL-DTL-55302F', 'Extreme modularity (Signal, power and coaxial contacts, from 1 to 3 rows, up to 120 pins) (20million configurations as a standard).  Board-to-board, board-to-wire, wire-to-wire configurations, space-saving.' ],
+  [[.6, .62, .32], [.4, .12, .6], [.6, .65, .36], 
+    'Connecteurs Micro EMM - Pas de 1,27 mm MIL-DTL-83513', 'Intègre des caractéristiques clés telles que des contacts inversés, une protection arrière intégrée à 90° et des accessoires interchangeables. Adapté aux configurations carte-à-carte (grâce à sa longueur de contact sécurisée) et carte-à-fil (de la jauge 24 à la jauge 30), la sélection de broches EMM est disponible de 4 à 60 contacts de signal', 
+    'EMM Micro connectors - 1.27mm pitch MIL-DTL-83513', 'With its 1.27mm pitch,  t integrates key features such as reversed contacts, integrated 90° back protection and interchangeable hardware. Suited to both board-to-board (thanks to its secure wiping length) and board-to-wire (from gauge 24 to gauge 30) configurations, EMM pin selection available from 04 to 60 signal contacts.' ],
+  [[.4, .18, .32], [.3, 0, .6], [.4, .18, .36], 
+    'Raccord rectangulaire', 'Raccord pour connecteurs Sub-D, Micro-D, Nano-D, MicroComp, haute fiabilité pour environnement sévère. Toutes tailles, sorties cheminées droites ou coudées, serre-câble, reprise de blindage par hexashield ou autre, mono bloc très léger ou en deux parties. Tous traitements de surfaces homologués aéronautique ou spatial, conforme aux NF-C-93425-HE-501/507/508 et MIL-DTL-24308', 
+    'Rectangular backshell', 'Backshell for Sub-D, Micro-D, Nano-D, MicroComp connectors, high reliability for harsh environment, all sizes, straight or angled output, strain releaf, shielding by hexashield or other, light monoblock or in two pieces. All surface treatments certified acc. aeronautic or space standards, conform to NF-C-93425-HE-501/507/508 and MIL-DTL-24308' ],
+  [[.4, .25, .32], [.3, .1, .6], [.4, .25, .36], 
+    'Raccord circulaire', 'Raccord pour connecteurs MIL-DTL-38999-1/2/3/4, MIL-DTL-26482-2, MIL-DTL-83723-1/3, EN-3645, EN-2997, toutes tailles, en aluminium, inox ou bronze, droit ou coudé, serre-câble, reprise de blindage, autofreiné, tous traitements de surfaces.', 
+    'Circular backshells', 'Backshell for connector MIL-DTL-38999-1/2/3/4, MIL-DTL-26482-2, MIL-DTL-83723-1/3, EN-3645, EN-2997, all sizes, aluminum alloy, stainless steel, bronze alloy, straight or angled, strain releaf, shielding, self locking, all kind of plating.' ],
+  [[.5, .24, .32], [.4, 0, .5], [.5, .24, .36], 
+    'Connecteur circulaire GC0162-26-S-19-N', 'Le connecteur Type 38999 Série 3 est une solution hautement configurable et personnalisable, conçue pour répondre aux besoins spécifiques des clients dans des environnements exigeants. Ce connecteur "vide" offre une flexibilité maximale, permettant à l\'utilisateur de créer des agencements internes adaptés à vos exigences en matière de câblage et d\'interconnexion. Grâce à ce niveau de personnalisation, les utilisateurs peuvent optimiser leurs solutions de connectivité afin de répondre aux contraintes techniques de leurs projets, tout en garantissant une performance fiable et durable.', 
+    'Circular connector GC0162-26-S-19-N', 'Connector Type 38999 Series 3 is a highly configurable and customizable solution designed to meet the specific needs of customers in demanding environments. This "empty" connector provides maximum flexibility, allowing to user to create internal arrangements tailored to your cabling and interconnection requirements. With this level of customization, users can optimize their connectivity solutions to address the technical constraints of their projects, all while ensuring reliable and durable performance.' ],
+  [[.55, .18, .32], [.4, 0, .5], [.55, .18, .36],  
+    'DMM connecteurs métalliques - Au pas de 2mm', 'Conformes aux performances de la norme MIL-DTL-83513G. Le DMM permet un gain d\'encombrement etune excellente réponse face à des problématiques d\'EMI-RFI et de protection mécanique.',
+    'DMM - 2mm pitch metal connectors', 'Complies with MIL-DTL-83513G performances and enable a wide choice of arrangements. They allow space-saving, electromagnetic & mechanical protection.' ],
+  [[.535, .22, .32], [.4, 0, .5], [.535, .22, .36],  
+    'OPTIMUS / EN4165 CONNECTEUR ETANCHE', 'Modulaire, étanche, répondant aux exigences EMI de ce standard, empilable, adapté aux panneaux ou aux fonds de paniers', 
+    'OPTIMUS / EN4165 SEALED CONNECTOR', 'Modular, sealed, and meeting the EMI requirements of this standard, stackable, suitable for panels or backplanes' ],
+  [[.62, .15, .32], [.58, 0, .5], [.62, .15, .36], 
+    'Harnais connectés au boîtier', 'Modulaire, étanche, répondant aux exigences EMI de ce standard, empilable, adapté aux panneaux ou aux fonds de paniers', 
+    'In/Out harnesses', 'Connected to box, modular, waterproof, acc. EMI of this standard, stackable' ],
 ];
 
 //-----------------------------------------------------------------------------------------------------------------------
@@ -142,17 +186,25 @@ const obj = [ //ID selectionnable, ID ref, XYZ ref, famille
 //-----------------------------------------------------------------------------------------------------------------------
 for (let s = 0; s < obj.length; s++) {
   var nom = obj[s][0];
-  nom = nom.slice(0, 4);   
-  if ((nom == 'A2-0') || (nom == 'A2-1') || (nom == 'A2-3')) {  Scenario_1_A2.push(obj[s][4])  };
-  if ((nom == 'A3-0') || (nom == 'A3-1') || (nom == 'A3-3')) {  Scenario_2_A3.push(obj[s][4])  };
-  if ((nom == 'A1-0') || (nom == 'A1-1') || (nom == 'A1-3')) {  Scenario_3_A1.push(obj[s][4])  };
+  // nom = nom.slice(0, 4);   
+  // if ((nom == 'A2-0') || (nom == 'A2-1') || (nom == 'A2-3')) {  Scenario_1_A2.push(obj[s][4])  };
+  // if ((nom == 'A3-0') || (nom == 'A3-1') || (nom == 'A3-3')) {  Scenario_2_A3.push(obj[s][4])  };
+  // if ((nom == 'A1-0') || (nom == 'A1-1') || (nom == 'A1-3')) {  Scenario_3_A1.push(obj[s][4])  };
+  nom = nom.slice(0, 3);   
+  if (nom == 'A2-') {  Scenario_1_A2.push(obj[s][4])  };
+  if (nom == 'A3-'){  Scenario_2_A3.push(obj[s][4])  };
+  if (nom == 'A1-') {  Scenario_3_A1.push(obj[s][4])  };
 };
+
 const scenario = getScenario();
-console.log("Scenario sélectionné :", scenario);
-if (scenario == 1) { consigne = Scenario_1_A2};
-if (scenario == 2) { consigne = Scenario_2_A3};
-if (scenario == 3) { consigne = Scenario_3_A1};
-console.log(Scenario_1_A2, Scenario_2_A3, Scenario_3_A1);
+const langue = scenario.slice(1, 3);
+console.log("Scenario sélectionné :", scenario, langue);
+if ((scenario == "1fr") || (scenario == "1en")) { consigne = Scenario_1_A2};
+if ((scenario == "2fr") || (scenario == "2en")) { consigne = Scenario_2_A3};
+if ((scenario == "3fr") || (scenario == "3en")) { consigne = Scenario_3_A1};
+consigne.sort();
+// window.console.log("consigne :", consigne)
+// console.log(Scenario_1_A2, Scenario_2_A3, Scenario_3_A1);
 
 //-----------------------------------------------------------------------------------------------------------------------
 function openPopup() { // Fonction pour ouvrir le popup
@@ -164,15 +216,6 @@ function closePopup() {  // Fonction pour fermer le popup
   popup.style.display = "none";
 }
 //-----------------------------------------------------------------------------------------------------------------------
-
-
-
-// for (let i = 0; i < ObjetsScenario.length; i++) {
-//   if (scenario == ObjetsScenario[i][0]) {
-//     totalConsigne = consigne.push(ObjetsScenario[i][1]); 
-//   };
-// };
-window.console.log("consigne :", consigne)
 // if (scenario == "1") {
 //   console.log("Scenario 1")
 
@@ -198,9 +241,14 @@ const success = (apiClient) => {
           if (!err) {window.console.log(nodes); }
         });
       //-----------------------------------------------------------------------------------------------------------------------
+      // Sélectionne le texte des consoles 
+      if (langue == "fr") {api.translate(1693-2, [0, 0, -.01], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});};  //Version française
+      if (langue == "en") {api.translate(1662-2, [0, 0, -.01], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});}; //Version anglaise
+      //-----------------------------------------------------------------------------------------------------------------------
       // affiche les annotations sous forme de bulles semi transparentes
       for (let a = 0; a < Anot.length; a++) {
-        api.createAnnotationFromWorldPosition(Anot[a][0], Anot[a][1], Anot[a][2], Anot[a][3], Anot[a][4]); // Version française
+        // api.createAnnotationFromWorldPosition(Anot[a][0], Anot[a][1], Anot[a][2], Anot[a][3], Anot[a][4]); // Version française
+        api.createAnnotationFromWorldPosition(Anot[a][0], Anot[a][1], Anot[a][2], Anot[a][5], Anot[a][6]); // Version anglaise
       };
       url = getNewPastilleURL('rgba(200,200,200,.2)', 'rgba(200,200,200,.4)', 'none', 'none', 0, 50, 512, 256); // Couleurs: intérieur, cercle, texte, texte
       api.setAnnotationsTexture(url, function () {});   
@@ -247,7 +295,7 @@ const success = (apiClient) => {
                     };
                     for (let j = 0; j < 4; j++) { lastFaceAvant[j] = obj[i][j+1] }; 
                   };
-                  window.console.log("objets sur la table :", tableAssy);
+                  // window.console.log("objets sur la table :", tableAssy);
                 };
               };
               // api.setCameraLookAt([0, -1, .7], [0, -.2, .3], 4.3, function(err) {}); //setCameraLookAt( position, target, [duration], [callback] )
@@ -257,18 +305,23 @@ const success = (apiClient) => {
           
           //----------------------------------------------------------------------------------------------------------------------- 
           if (info.instanceID == 1633) { //clic sur le buzzer => vérification de la correspondance entre les objets sur table et la consigne
-            // window.console.log("objets sur la table :", tableAssy)
-            // window.console.log("consigne :", consigne)
+            tableAssy.sort();            
+            window.console.log("objets sur la table :", tableAssy)
+            window.console.log("consigne :", consigne)
             sontEgaux = consigne.length ===
              tableAssy.length && consigne.every((valeur, index) => valeur === tableAssy[index]);
-            if (sontEgaux == true) {
-              showBanner(true)
-              resussite = 1;
-              api.hide(1633-2); //cache le buzzer
-            } else {showBanner(false)}
-          }
+             if (sontEgaux == true) {
+                if (langue == "fr") {showBanner(true)}; 
+                if (langue == "en") {showBannerEN(true)};
+                resussite = 1;
+                api.hide(1633-2); //cache le buzzer
+            } else {
+              if (langue == "fr") {showBanner(false)}; 
+              if (langue == "en") {showBannerEN(false)};
+            };
+          };
           //----------------------------------------------------------------------------------------------------------------------- 
-          if (info.instanceID == 1662) { //clic sur le bouton solution => affiche la solution en 3D sur la table 
+          if (info.instanceID == 1679) { //clic sur le bouton solution => affiche la solution en 3D sur la table 
             resussite = 1;
             api.hide(1633-2); //cache le buzzer
             //retourne les composants à leur place et vide le tableau "tableAssy"
@@ -277,7 +330,7 @@ const success = (apiClient) => {
               tableAssy.splice(0, tableAssy.length);
             };
             // puis la recharge avec la selection du scenario
-            if (scenario == 1) {
+            if ((scenario == "1fr") || (scenario == "1en")) {
               for (let j = 0; j < Scenario_1_A2.length; j++) {
                 for (let i = 0; i < obj.length; i++) {
                   if (obj[i][4] == Scenario_1_A2[j]) {
@@ -287,7 +340,7 @@ const success = (apiClient) => {
                 };
               };
             };
-            if (scenario == 2) {
+            if ((scenario == "2fr") || (scenario == "2en")) {
               for (let j = 0; j < Scenario_2_A3.length; j++) {
                 for (let i = 0; i < obj.length; i++) {
                   if (obj[i][4] == Scenario_2_A3[j]) {
@@ -297,7 +350,7 @@ const success = (apiClient) => {
                 };
               };
             };
-            if (scenario == 3) {
+            if ((scenario == "3fr") || (scenario == "3en")) {
               for (let j = 0; j < Scenario_3_A1.length; j++) {
                 for (let i = 0; i < obj.length; i++) {
                   if (obj[i][4] == Scenario_3_A1[j]) {
@@ -307,7 +360,7 @@ const success = (apiClient) => {
                 };
               };
             };
-
+    
           }
         }
       }); 
@@ -356,8 +409,6 @@ const success = (apiClient) => {
             };
           };
         };
-
-
       });
 
 
